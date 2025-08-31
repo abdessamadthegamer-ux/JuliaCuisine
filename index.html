@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Cuisine | Recettes d'Automne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables et réinitialisation */
+        :root {
+            --beige: #F5F1E8;
+            --beige-fonce: #E8DFCA;
+            --brun: #7D6E5D;
+            --brun-fonce: #5C4B3A;
+            --vert-doux: #9CAF88;
+            --bourgogne: #8C3A3A;
+            --or: #C6A969;
+            --blanc: #FFFFFF;
+            --noir: #2A2A2A;
+            
+            --police-titre: 'Playfair Display', serif;
+            --police-texte: 'Montserrat', sans-serif;
+            
+            --ombre-legere: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --ombre-moyenne: 0 6px 16px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--police-texte);
+            color: var(--noir);
+            background-color: var(--beige);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Layout principal */
+        #app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding-top: 80px;
+            flex: 1;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header et Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(245, 241, 232, 0.95);
+            box-shadow: var(--ombre-legere);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 1rem 5%;
+            background-color: var(--beige);
+        }
+        
+        .logo {
+            font-family: var(--police-titre);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--brun-fonce);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--or);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav li a {
+            font-weight: 500;
+            color: var(--brun);
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+        
+        nav li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--or);
+            transition: var(--transition);
+        }
+        
+        nav li a:hover {
+            color: var(--brun-fonce);
+        }
+        
+        nav li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Section Hero */
+        .hero {
+            height: 70vh;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--blanc);
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero-content h1 {
+            font-family: var(--police-titre);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--or);
+            color: var(--blanc);
+            border: none;
+            border-radius: 4px;
+            font-family: var(--police-texte);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--ombre-legere);
+        }
+        
+        .btn:hover {
+            background-color: var(--brun-fonce);
+            transform: translateY(-3px);
+            box-shadow: var(--ombre-moyenne);
+        }
+        
+        /* Section Recettes */
+        .recipes-section {
+            padding: 4rem 5%;
+            background-color: var(--blanc);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: var(--police-titre);
+            font-size: 2.2rem;
+            color: var(--brun-fonce);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--or);
+        }
+        
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .recipe-card {
+            background-color: var(--blanc);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--ombre-legere);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+        
+        .recipe-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--ombre-moyenne);
+        }
+        
+        .recipe-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .recipe-card:hover .recipe-image img {
+            transform: scale(1.05);
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .recipe-title {
+            font-family: var(--police-titre);
+            font-size: 1.5rem;
+            color: var(--brun-fonce);
+            margin-bottom: 0.5rem;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--brun);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .recipe-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--noir);
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bourgogne);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover {
+            color: var(--or);
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Page de détail de recette */
+        .recipe-detail {
+            padding: 2rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .recipe-detail-image {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--ombre-moyenne);
+        }
+        
+        .recipe-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recipe-detail-title {
+            font-family: var(--police-titre);
+            font-size: 2.5rem;
+            color: var(--brun-fonce);
+            margin-bottom: 1rem;
+        }
+        
+        .recipe-detail-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--brun);
+        }
+        
+        .recipe-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+        
+        .ingredients {
+            background-color: var(--beige);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .ingredients h3, .instructions h3 {
+            font-family: var(--police-titre);
+            color: var(--brun-fonce);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--or);
+        }
+        
+        .ingredients ul {
+            list-style: none;
+        }
+        
+        .ingredients li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .ingredients li:before {
+            content: "•";
+            color: var(--or);
+            position: absolute;
+            left: 0;
+        }
+        
+        .instructions ol {
+            list-style: none;
+            counter-reset: instruction;
+        }
+        
+        .instructions li {
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+            counter-increment: instruction;
+        }
+        
+        .instructions li:before {
+            content: counter(instruction);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--or);
+            color: var(--blanc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--brun);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-button:hover {
+            color: var(--brun-fonce);
+        }
+        
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--brun-fonce);
+            color: var(--beige);
+            padding: 3rem 5% 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-family: var(--police-titre);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--or);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .recipe-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-detail-image {
+                height: 300px;
+            }
+            
+            .recipe-detail-title {
+                font-size: 2rem;
+            }
+            
+            .recipe-detail-meta {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header et Navigation -->
+        <header>
+            <a href="#" class="logo" data-page="home">
+                <i class="fas fa-utensils"></i>
+                Julia Cuisine
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" data-page="home">Accueil</a></li>
+                    <li><a href="#" data-page="recipes">Recettes</a></li>
+                    <li><a href="#" data-page="about">À propos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Page d'accueil -->
+        <div id="home" class="page active">
+            <!-- Section Hero -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Découvrez les Saveurs d'Automne</h1>
+                    <p>Des recettes réconfortantes pour célébrer la richesse des produits de saison</p>
+                    <a href="#" class="btn" data-page="recipes">Explorer les recettes</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Page des recettes -->
+        <div id="recipes" class="page">
+            <section class="recipes-section">
+                <h2 class="section-title">Recettes d'Automne</h2>
+                
+                <div class="recipes-grid" id="recipesContainer">
+                    <!-- Les recettes seront ajoutées dynamiquement -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Page de détail de recette -->
+        <div id="recipe-detail" class="page">
+            <div class="recipe-detail" id="recipeDetailContainer">
+                <!-- Le contenu de la recette sera ajouté dynamiquement -->
+            </div>
+        </div>
+
+        <!-- Page À propos -->
+        <div id="about" class="page">
+            <section class="recipes-section">
+                <h2 class="section-title">À propos de Julia Cuisine</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p>Julia Cuisine est un blog dédié à la gastronomie française et aux saveurs de saison. Fondé par Julia Martin, passionnée de cuisine depuis son plus jeune âge, ce blog partage des recettes authentiques et des techniques culinaires pour tous les niveaux.</p>
+                    <p>Notre mission est de rendre la cuisine accessible tout en célébrant la richesse des produits locaux et de saison. Chaque recette est soigneusement testée et photographée pour vous inspirer en cuisine.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Julia Cuisine</h3>
+                    <p>L'art de la cuisine avec passion et élégance. Découvrez les secrets de la gastronomie française.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Email: contact@juliacuisine.com</p>
+                    <p>Téléphone: +33 1 23 45 67 89</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Suivez-nous</h3>
+                    <p>Restez connecté pour découvrir nos dernières recettes et astuces culinaires.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Julia Cuisine - Tous droits réservés</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Données des recettes avec toutes les images
+            const recipes = [
+                {
+                    id: 1,
+                    title: "Soupe de Potiron et Châtaignes",
+                    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une soupe veloutée et réconfortante qui marie la douceur du potiron avec le goût rustique des châtaignes.",
+                    time: 35,
+                    servings: 4,
+                    rating: 4.8,
+                    ingredients: [
+                        "1 petit potiron (environ 1 kg)",
+                        "200g de châtaignes cuites",
+                        "1 oignon",
+                        "1 litre de bouillon de légumes",
+                        "20cl de crème fraîche",
+                        "Noix de muscade",
+                        "Sel et poivre"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez le potiron en dés.",
+                        "Émincez l'oignon et faites-le revenir dans une cocotte avec un peu d'huile d'olive.",
+                        "Ajoutez les dés de potiron et les châtaignes. Couvrez avec le bouillon et portez à ébullition.",
+                        "Laissez mijoter 25 minutes jusqu'à ce que le potiron soit tendre.",
+                        "Mixez la soupe jusqu'à obtenir un velouté lisse.",
+                        "Ajoutez la crème fraîche et assaisonnez avec la noix de muscade, le sel et le poivre."
+                    ],
+                    source: "Marmiton"
+                },
+                {
+                    id: 2,
+                    title: "Coq au Vin Rouge aux Champignons",
+                    image: "https://images.unsplash.com/photo-1571167366136-b57e07761694?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un classique de la cuisine française revisité avec des champignons de saison.",
+                    time: 120,
+                    servings: 6,
+                    rating: 4.7,
+                    ingredients: [
+                        "1 poulet coupé en morceaux",
+                        "75cl de vin rouge",
+                        "200g de champignons de Paris",
+                        "150g de lardons",
+                        "200g d'oignons grelots",
+                        "2 gousses d'ail",
+                        "Bouquet garni (thym, laurier)",
+                        "2 cuillères à soupe de farine"
+                    ],
+                    instructions: [
+                        "Faites revenir les lardons dans une cocotte. Ajoutez les morceaux de poulet et faites dorer de tous côtés.",
+                        "Saupoudrez de farine et mélangez bien.",
+                        "Versez le vin rouge, ajoutez l'ail écrasé, le bouquet garni, les oignons grelots et les champignons.",
+                        "Couvrez et laissez mijoter à feu doux pendant 1h30.",
+                        "Retirez le couvercle et laissez réduire encore 15 minutes.",
+                        "Servez chaud avec des pommes de terre vapeur ou des pâtes fraîches."
+                    ],
+                    source: "750g"
+                },
+                {
+                    id: 3,
+                    title: "Tarte Rustique aux Pommes et Caramel de Sésame",
+                    image: "https://images.unsplash.com/photo-1563227810-2f42c4731beb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une tarte aux pommes gourmande avec une touche originale de caramel au sésame.",
+                    time: 50,
+                    servings: 6,
+                    rating: 4.9,
+                    ingredients: [
+                        "1 pâte brisée",
+                        "4 pommes",
+                        "100g de sucre roux",
+                        "50g de beurre",
+                        "2 cuillères à soupe de graines de sésame",
+                        "1 cuillère à soupe de crème fraîche",
+                        "Cannelle en poudre"
+                    ],
+                    instructions: [
+                        "Étalez la pâte brisée dans un moule à tarte.",
+                        "Épluchez et coupez les pommes en lamelles.",
+                        "Disposez les lamelles de pommes en rosace sur la pâte.",
+                        "Faites fondre le beurre avec le sucre roux dans une casserole.",
+                        "Ajoutez les graines de sésame et la crème fraîche pour former un caramel.",
+                        "Versez le caramel sur les pommes et saupoudrez de cannelle.",
+                        "Enfournez à 180°C pendant 30 minutes."
+                    ],
+                    source: "Pinterest"
+                },
+                {
+                    id: 4,
+                    title: "Risotto aux Cèpes et Parmesan",
+                    image: "https://images.unsplash.com/photo-1570194065313-716c0a1c5bae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un risotto crémeux aux cèpes frais et au parmesan, qui capture l'essence de la forêt en automne.",
+                    time: 45,
+                    servings: 4,
+                    rating: 4.6,
+                    ingredients: [
+                        "300g de riz Arborio",
+                        "250g de cèpes frais",
+                        "1 oignon",
+                        "1 litre de bouillon de légumes",
+                        "100g de parmesan râpé",
+                        "10cl de vin blanc",
+                        "2 cuillères à soupe d'huile d'olive",
+                        "Persil haché"
+                    ],
+                    instructions: [
+                        "Nettoyez et coupez les cèpes en morceaux.",
+                        "Faites revenir l'oignon émincé dans l'huile d'olive.",
+                        "Ajoutez les cèpes et faites cuire 5 minutes.",
+                        "Incorporez le riz et mélangez jusqu'à ce qu'il devienne translucide.",
+                        "Versez le vin blanc et laissez évaporer.",
+                        "Ajoutez le bouillon petit à petit en remuant constamment.",
+                        "Quand le riz est cuit, retirez du feu et incorporez le parmesan.",
+                        "Servez avec du persil haché et des copeaux de parmesan."
+                    ],
+                    source: "ELLE à Table"
+                },
+                {
+                    id: 5,
+                    title: "Crumble Poire et Chocolat",
+                    image: "https://images.unsplash.com/photo-1623241894050-5c3a62592ab6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un dessert irrésistible qui allie la douceur des poires fondantes au riche goût du chocolat.",
+                    time: 40,
+                    servings: 6,
+                    rating: 4.8,
+                    ingredients: [
+                        "6 poires",
+                        "200g de chocolat noir",
+                        "150g de farine",
+                        "100g de beurre",
+                        "100g de sucre",
+                        "50g d'amandes effilées",
+                        "1 cuillère à café de cannelle"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez les poires en dés.",
+                        "Faites fondre le chocolat au bain-marie.",
+                        "Mélangez la farine, le sucre et la cannelle.",
+                        "Incorporez le beurre coupé en petits morceaux et travaillez du bout des doigts pour obtenir une texture sableuse.",
+                        "Ajoutez les amandes effilées.",
+                        "Dans un plat à gratin, disposez les poires et versez le chocolat fondu par-dessus.",
+                        "Répartissez la pâte à crumble sur les poires.",
+                        "Enfournez à 180°C pendant 25 minutes."
+                    ],
+                    source: "Pinterest"
+                },
+                {
+                    id: 6,
+                    title: "Velouté de Patate Douce au Curcuma",
+                    image: "https://images.unsplash.com/photo-1543339305-5b5f34b5ce76?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une soupe onctueuse et vibrante à la patate douce, réchauffée par les notes épicées du curcuma.",
+                    time: 30,
+                    servings: 4,
+                    rating: 4.5,
+                    ingredients: [
+                        "800g de patates douces",
+                        "1 oignon",
+                        "1 litre de bouillon de légumes",
+                        "20cl de lait de coco",
+                        "1 cuillère à café de curcuma",
+                        "1 morceau de gingembre frais",
+                        "Huile d'olive",
+                        "Coriandre fraîche"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez les patates douces en dés.",
+                        "Émincez l'oignon et faites-le revenir dans une cocotte avec un peu d'huile d'olive.",
+                        "Ajoutez les patates douces, le curcuma et le gingembre râpé.",
+                        "Versez le bouillon et portez à ébullition. Laissez cuire 20 minutes.",
+                        "Mixez la soupe jusqu'à obtenir une texture lisse.",
+                        "Incorporez le lait de coco et mélangez bien.",
+                        "Servez avec des feuilles de coriandre et un filet d'huile d'olive."
+                    ],
+                    source: "Marmiton"
+                }
+            ];
+
+            // Éléments DOM
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('nav a');
+            const recipesContainer = document.getElementById('recipesContainer');
+            const recipeDetailContainer = document.getElementById('recipeDetailContainer');
+            let currentPage = 'home';
+            let previousPage = 'home';
+            
+            // Fonction pour changer de page
+            function navigateTo(pageId, data = null) {
+                previousPage = currentPage;
+                currentPage = pageId;
+                
+                // Masquer toutes les pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Afficher la page demandée
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    
+                    // Mettre à jour l'URL dans la barre d'adresse
+                    window.history.pushState({page: pageId, data: data}, '', `#${pageId}`);
+                    
+                    // Scroll vers le haut
+                    window.scrollTo(0, 0);
+                    
+                    // Charger le contenu spécifique si nécessaire
+                    if (pageId === 'recipes') {
+                        loadRecipes();
+                    } else if (pageId === 'recipe-detail' && data) {
+                        loadRecipeDetail(data);
+                    }
+                }
+            }
+            
+            // Charger les recettes dans la grille
+            function loadRecipes() {
+                recipesContainer.innerHTML = '';
+                
+                recipes.forEach(recipe => {
+                    const recipeCard = document.createElement('div');
+                    recipeCard.className = 'recipe-card';
+                    recipeCard.dataset.id = recipe.id;
+                    
+                    recipeCard.innerHTML = `
+                        <div class="recipe-image">
+                            <img src="${recipe.image}" alt="${recipe.title}">
+                        </div>
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">${recipe.title}</h3>
+                            <div class="recipe-meta">
+                                <span><i class="far fa-clock"></i> ${recipe.time} min</span>
+                                <span><i class="fas fa-user"></i> ${recipe.servings} personnes</span>
+                            </div>
+                            <p class="recipe-excerpt">${recipe.description}</p>
+                            <div class="read-more">Voir la recette <i class="fas fa-arrow-right"></i></div>
+                        </div>
+                    `;
+                    
+                    recipeCard.addEventListener('click', () => {
+                        navigateTo('recipe-detail', recipe);
+                    });
+                    
+                    recipesContainer.appendChild(recipeCard);
+                    
+                    // Animation d'apparition
+                    setTimeout(() => {
+                        recipeCard.classList.add('active');
+                    }, 100);
+                });
+            }
+            
+            // Charger le détail d'une recette
+            function loadRecipeDetail(recipe) {
+                recipeDetailContainer.innerHTML = `
+                    <a href="#" class="back-button" data-page="recipes">
+                        <i class="fas fa-arrow-left"></i> Retour aux recettes
+                    </a>
+                    
+                    <div class="recipe-detail-image">
+                        <img src="${recipe.image}" alt="${recipe.title}">
+                    </div>
+                    
+                    <h1 class="recipe-detail-title">${recipe.title}</h1>
+                    
+                    <div class="recipe-detail-meta">
+                        <span><i class="far fa-clock"></i> ${recipe.time} minutes</span>
+                        <span><i class="fas fa-user"></i> ${recipe.servings} personnes</span>
+                        <span><i class="fas fa-star"></i> ${recipe.rating}/5</span>
+                        <span><i class="fas fa-source"></i> Source: ${recipe.source}</span>
+                    </div>
+                    
+                    <div class="recipe-detail-content">
+                        <div class="ingredients">
+                            <h3>Ingrédients</h3>
+                            <ul>
+                                ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="instructions">
+                            <h3>Préparation</h3>
+                            <ol>
+                                ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                `;
+                
+                // Gestionnaire pour le bouton retour
+                const backButton = recipeDetailContainer.querySelector('.back-button');
+                backButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigateTo('recipes');
+                });
+            }
+            
+            // Gestionnaires pour les liens de navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    navigateTo(pageId);
+                });
+            });
+            
+            // Gestionnaire pour le bouton de la hero section
+            const heroButton = document.querySelector('.hero-content .btn');
+            if (heroButton) {
+                heroButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = heroButton.getAttribute('data-page');
+                    navigateTo(pageId);
+                });
+            }
+            
+            // Gestion du bouton retour du navigateur
+            window.addEventListener('popstate', function(e) {
+                if (e.state && e.state.page) {
+                    const targetPage = e.state.page;
+                    const targetData = e.state.data;
+                    
+                    if (targetPage === 'recipe-detail' && targetData) {
+                        navigateTo(targetPage, targetData);
+                    } else {
+                        navigateTo(targetPage);
+                    }
+                } else {
+                    navigateTo('home');
+                }
+            });
+            
+            // Gestion de l'ancrage dans l'URL au chargement
+            window.addEventListener('load', function() {
+                if (window.location.hash) {
+                    const pageId = window.location.hash.substring(1);
+                    if (pageId === 'recipes') {
+                        navigateTo('recipes');
+                    }
+                }
+            });
+            
+            // Initialiser l'état de navigation
+            window.history.replaceState({page: 'home'}, '', '#home');
+            
+            // Header au défilement
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Charger les recettes au démarrage
+            loadRecipes();
+        });
+    </script>
+</body>
+</html>
