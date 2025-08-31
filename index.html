@@ -323,12 +323,52 @@
             transition: var(--transition);
             font-family: var(--police-texte);
             color: var(--brun);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .filter-btn.active, .filter-btn:hover {
             background: var(--or);
             color: var(--blanc);
             border-color: var(--or);
+        }
+        
+        /* Filtres de pays */
+        .country-filters {
+            display: none;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .country-filters.active {
+            display: flex;
+        }
+        
+        .country-btn {
+            padding: 0.5rem 1rem;
+            background: var(--beige);
+            border: 1px solid var(--beige-fonce);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--police-texte);
+            color: var(--brun);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .country-btn.active, .country-btn:hover {
+            background: var(--or);
+            color: var(--blanc);
+            border-color: var(--or);
+        }
+        
+        .country-flag {
+            font-size: 1.2rem;
         }
         
         /* Page de détail de recette */
@@ -515,7 +555,7 @@
                 gap: 1rem;
             }
             
-            .filters {
+            .filters, .country-filters {
                 justify-content: flex-start;
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
@@ -564,7 +604,30 @@
                     <button class="filter-btn" data-filter="plat">Plats principaux</button>
                     <button class="filter-btn" data-filter="dessert">Desserts</button>
                     <button class="filter-btn" data-filter="rapide">< 30 min</button>
-                    <button class="filter-btn" data-filter="international">International</button>
+                    <button class="filter-btn" data-filter="international">
+                        <i class="fas fa-globe-americas"></i> International
+                    </button>
+                </div>
+                
+                <div class="country-filters" id="countryFilters">
+                    <button class="country-btn" data-country="maroc">
+                        <span class="country-flag">🇲🇦</span> Maroc
+                    </button>
+                    <button class="country-btn" data-country="italie">
+                        <span class="country-flag">🇮🇹</span> Italie
+                    </button>
+                    <button class="country-btn" data-country="thailande">
+                        <span class="country-flag">🇹🇭</span> Thaïlande
+                    </button>
+                    <button class="country-btn" data-country="mexique">
+                        <span class="country-flag">🇲🇽</span> Mexique
+                    </button>
+                    <button class="country-btn" data-country="japon">
+                        <span class="country-flag">🇯🇵</span> Japon
+                    </button>
+                    <button class="country-btn" data-country="france">
+                        <span class="country-flag">🇫🇷</span> France
+                    </button>
                 </div>
                 
                 <div class="recipes-grid" id="recipesContainer">
@@ -824,7 +887,7 @@
                     ],
                     instructions: [
                         "Faites revenir les oignons et l'ail dans l'huile d'olive.",
-                        "Ajoutez les épices et faites torréfier quelques secondes.",
+                        "Ajoutez les épices et faites torréfier quelques seconds.",
                         "Ajoutez les morceaux de poulet et faites dorer sur toutes les faces.",
                         "Coupez le citron confit en quartiers et ajoutez-le avec les olives.",
                         "Couvrez d'eau et laissez mijoter à feu doux pendant 1 heure.",
@@ -886,7 +949,7 @@
                         "4 œufs",
                         "1 bouquet de persil",
                         "Cannelle",
-                        "Sucre glace",
+                        "Suce glace",
                         "Beurre fondu",
                         "Safran",
                         "Gingembre"
@@ -1557,9 +1620,12 @@
             const recipesContainer = document.getElementById('recipesContainer');
             const recipeDetailContainer = document.getElementById('recipeDetailContainer');
             const filterButtons = document.querySelectorAll('.filter-btn');
+            const countryButtons = document.querySelectorAll('.country-btn');
+            const countryFilters = document.getElementById('countryFilters');
             let currentPage = 'home';
             let previousPage = 'home';
             let currentFilter = 'all';
+            let currentCountry = null;
             
             // Fonction pour changer de page
             function navigateTo(pageId, data = null) {
@@ -1596,6 +1662,9 @@
                 if (currentFilter === 'all') {
                     return recipes;
                 } else if (currentFilter === 'international') {
+                    if (currentCountry) {
+                        return recipes.filter(recipe => recipe.category === 'international' && recipe.country === currentCountry);
+                    }
                     return recipes.filter(recipe => recipe.category === 'international');
                 } else if (currentFilter === 'rapide') {
                     return recipes.filter(recipe => recipe.time <= 30);
@@ -1715,7 +1784,29 @@
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     currentFilter = button.getAttribute('data-filter');
+                    
+                    // Afficher ou masquer les filtres de pays
+                    if (currentFilter === 'international') {
+                        countryFilters.classList.add('active');
+                    } else {
+                        countryFilters.classList.remove('active');
+                        currentCountry = null;
+                        countryButtons.forEach(btn => btn.classList.remove('active'));
+                    }
+                    
                     loadRecipes();
+                });
+            });
+            
+            // Gestion des filtres de pays
+            countryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (currentFilter === 'international') {
+                        countryButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        currentCountry = button.getAttribute('data-country');
+                        loadRecipes();
+                    }
                 });
             });
             
