@@ -305,6 +305,32 @@
             transform: translateX(5px);
         }
         
+        /* Filtres */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--beige);
+            border: 1px solid var(--beige-fonce);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--police-texte);
+            color: var(--brun);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--or);
+            color: var(--blanc);
+            border-color: var(--or);
+        }
+        
         /* Page de détail de recette */
         .recipe-detail {
             padding: 2rem 5%;
@@ -488,6 +514,12 @@
                 flex-wrap: wrap;
                 gap: 1rem;
             }
+            
+            .filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -525,6 +557,15 @@
         <div id="recipes" class="page">
             <section class="recipes-section">
                 <h2 class="section-title">Recettes d'Automne</h2>
+                
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Toutes</button>
+                    <button class="filter-btn" data-filter="entree">Entrées</button>
+                    <button class="filter-btn" data-filter="plat">Plats principaux</button>
+                    <button class="filter-btn" data-filter="dessert">Desserts</button>
+                    <button class="filter-btn" data-filter="rapide">< 30 min</button>
+                    <button class="filter-btn" data-filter="international">International</button>
+                </div>
                 
                 <div class="recipes-grid" id="recipesContainer">
                     <!-- Les recettes seront ajoutées dynamiquement -->
@@ -588,6 +629,7 @@
                     time: 35,
                     servings: 4,
                     rating: 4.8,
+                    category: "entree",
                     ingredients: [
                         "1 petit potiron (environ 1 kg)",
                         "200g de châtaignes cuites",
@@ -615,6 +657,7 @@
                     time: 120,
                     servings: 6,
                     rating: 4.7,
+                    category: "plat",
                     ingredients: [
                         "1 poulet coupé en morceaux",
                         "75cl de vin rouge",
@@ -643,6 +686,7 @@
                     time: 50,
                     servings: 6,
                     rating: 4.9,
+                    category: "dessert",
                     ingredients: [
                         "1 pâte brisée",
                         "4 pommes",
@@ -671,6 +715,7 @@
                     time: 45,
                     servings: 4,
                     rating: 4.6,
+                    category: "plat",
                     ingredients: [
                         "300g de riz Arborio",
                         "250g de cèpes frais",
@@ -701,6 +746,7 @@
                     time: 40,
                     servings: 6,
                     rating: 4.8,
+                    category: "dessert",
                     ingredients: [
                         "6 poires",
                         "200g de chocolat noir",
@@ -730,6 +776,7 @@
                     time: 30,
                     servings: 4,
                     rating: 4.5,
+                    category: "entree",
                     ingredients: [
                         "800g de patates douces",
                         "1 oignon",
@@ -750,6 +797,757 @@
                         "Servez avec des feuilles de coriandre et un filet d'huile d'olive."
                     ],
                     source: "Marmiton"
+                },
+                // Recettes internationales - Maroc
+                {
+                    id: 7,
+                    title: "Tajine de Poulet Citron Confit",
+                    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un tajine marocain traditionnel au poulet, citron confit et olives, parfumé aux épices orientales.",
+                    time: 90,
+                    servings: 4,
+                    rating: 4.7,
+                    category: "international",
+                    country: "maroc",
+                    ingredients: [
+                        "1 poulet coupé en morceaux",
+                        "2 oignons émincés",
+                        "4 gousses d'ail",
+                        "1 citron confit",
+                        "100g d'olives vertes",
+                        "1 cuillère à café de gingembre",
+                        "1 cuillère à café de curcuma",
+                        "1 cuillère à café de cumin",
+                        "Safran",
+                        "Coriandre fraîche",
+                        "Huile d'olive"
+                    ],
+                    instructions: [
+                        "Faites revenir les oignons et l'ail dans l'huile d'olive.",
+                        "Ajoutez les épices et faites torréfier quelques secondes.",
+                        "Ajoutez les morceaux de poulet et faites dorer sur toutes les faces.",
+                        "Coupez le citron confit en quartiers et ajoutez-le avec les olives.",
+                        "Couvrez d'eau et laissez mijoter à feu doux pendant 1 heure.",
+                        "Parsemez de coriandre fraîche avant de servir."
+                    ],
+                    source: "Cuisine Marocaine"
+                },
+                {
+                    id: 8,
+                    title: "Couscous Royal",
+                    image: "https://images.unsplash.com/photo-1530554764230-e5e4b17ab102?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Le plat traditionnel marocain avec semoule, légumes et viandes variées, cuit à la vapeur.",
+                    time: 120,
+                    servings: 6,
+                    rating: 4.9,
+                    category: "international",
+                    country: "maroc",
+                    ingredients: [
+                        "500g de semoule moyenne",
+                        "4 pilons de poulet",
+                        "4 merguez",
+                        "4 boulettes de viande",
+                        "2 courgettes",
+                        "4 carottes",
+                        "1 navet",
+                        "2 tomates",
+                        "1 boîte de pois chiches",
+                        "2 cuillères à soupe de concentré de tomate",
+                        "Ras el hanout",
+                        "Safran",
+                        "Gingembre"
+                    ],
+                    instructions: [
+                        "Préparez la semoule selon les instructions du paquet.",
+                        "Dans un couscoussier, faites revenir les oignons avec le concentré de tomate.",
+                        "Ajoutez les légumes coupés en morceaux et les épices.",
+                        "Ajoutez les viandes et couvrez d'eau. Laissez cuire 45 minutes.",
+                        "Placez la semoule dans le panier vapeur et disposez sur le couscoussier.",
+                        "Laissez cuire à la vapeur 20 minutes.",
+                        "Servez la semoule avec les légumes et les viandes."
+                    ],
+                    source: "Cuisine Marocaine"
+                },
+                {
+                    id: 9,
+                    title: "Pastilla au Poulet",
+                    image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Feuilleté sucré-salé marocain farci de poulet, amandes et épices, saupoudré de sucre glace et cannelle.",
+                    time: 90,
+                    servings: 6,
+                    rating: 4.8,
+                    category: "international",
+                    country: "maroc",
+                    ingredients: [
+                        "1 poulet",
+                        "200g d'amandes effilées",
+                        "10 feuilles de brick",
+                        "2 oignons",
+                        "4 œufs",
+                        "1 bouquet de persil",
+                        "Cannelle",
+                        "Sucre glace",
+                        "Beurre fondu",
+                        "Safran",
+                        "Gingembre"
+                    ],
+                    instructions: [
+                        "Faites cuire le poulet avec les oignons et les épices.",
+                        "Égrenez le poulet et réduisez le bouillon.",
+                        "Faites dorer les amandes avec un peu de beurre et de cannelle.",
+                        "Battez les œufs et faites-les cuire dans le bouillon pour obtenir une crème.",
+                        "Montez la pastilla en alternant couches de brick, poulet, crème aux œufs et amandes.",
+                        "Badigeonnez de beurre et enfournez à 180°C pendant 30 minutes.",
+                        "Saupoudrez de sucre glace et de cannelle avant de servir."
+                    ],
+                    source: "Cuisine Marocaine"
+                },
+                {
+                    id: 10,
+                    title: "Harira Marocaine",
+                    image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Soupe traditionnelle marocaine à base de lentilles, pois chiches, tomates et épices, souvent servie pendant le Ramadan.",
+                    time: 60,
+                    servings: 6,
+                    rating: 4.6,
+                    category: "international",
+                    country: "maroc",
+                    ingredients: [
+                        "200g de lentilles",
+                        "200g de pois chiches trempés",
+                        "500g de tomates",
+                        "1 bouquet de coriandre",
+                        "1 bouquet de persil",
+                        "2 oignons",
+                        "2 branches de céleri",
+                        "100g de vermicelles",
+                        "1 cuillère à café de gingembre",
+                        "1 cuillère à café de curcuma",
+                        "Safran",
+                        "Jus de citron"
+                    ],
+                    instructions: [
+                        "Faites revenir les oignons et le céleri dans l'huile d'olive.",
+                        "Ajoutez les tomates mixées et les épices.",
+                        "Ajoutez les lentilles et les pois chiches, couvrez d'eau et laissez cuire 30 minutes.",
+                        "Ajoutez les vermicelles et les herbes hachées.",
+                        "Laissez cuire encore 10 minutes.",
+                        "Ajoutez le jus de citron avant de servir."
+                    ],
+                    source: "Cuisine Marocaine"
+                },
+                // Recettes internationales - Italie
+                {
+                    id: 11,
+                    title: "Pizza Margherita",
+                    image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "La pizza italienne traditionnelle avec sauce tomate, mozzarella et basilic frais.",
+                    time: 45,
+                    servings: 2,
+                    rating: 4.9,
+                    category: "international",
+                    country: "italie",
+                    ingredients: [
+                        "1 pâte à pizza",
+                        "200g de sauce tomate",
+                        "250g de mozzarella",
+                        "Feuilles de basilic",
+                        "Huile d'olive",
+                        "Origan"
+                    ],
+                    instructions: [
+                        "Étalez la pâte à pizza.",
+                        "Étalez la sauce tomate.",
+                        "Ajoutez la mozzarella coupée en tranches.",
+                        "Enfournez à 220°C pendant 15-20 minutes.",
+                        "Ajoutez le basilic frais et un filet d'huile d'olive avant de servir."
+                    ],
+                    source: "Cuisine Italienne"
+                },
+                {
+                    id: 12,
+                    title: "Risotto aux Champignons",
+                    image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Risotto crémeux aux champignons et parmesan, typique de la cuisine italienne du Nord.",
+                    time: 40,
+                    servings: 4,
+                    rating: 4.7,
+                    category: "international",
+                    country: "italie",
+                    ingredients: [
+                        "300g de riz Arborio",
+                        "300g de champignons",
+                        "1 oignon",
+                        "1 litre de bouillon de légumes",
+                        "100g de parmesan",
+                        "Vin blanc",
+                        "Beurre",
+                        "Persil"
+                    ],
+                    instructions: [
+                        "Faites revenir l'oignon dans l'huile d'olive.",
+                        "Ajoutez les champignons coupés en lamelles.",
+                        "Ajoutez le riz et laissez translucide.",
+                        "Versez le vin blanc et laissez évaporer.",
+                        "Ajoutez le bouillon petit à petit en remuant.",
+                        "Incorporez le parmesan et le beurre en fin de cuisson.",
+                        "Parsemez de persil avant de servir."
+                    ],
+                    source: "Cuisine Italienne"
+                },
+                {
+                    id: 13,
+                    title: "Osso Buco",
+                    image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Plat milanais traditionnel à base de jarret de veau braisé avec légumes et vin blanc.",
+                    time: 150,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "italie",
+                    ingredients: [
+                        "4 tranches de jarret de veau",
+                        "1 oignon",
+                        "2 carottes",
+                        "2 branches de céleri",
+                        "400g de tomates pelées",
+                        "Vin blanc",
+                        "Bouillon de veau",
+                        "Farine"
+                    ],
+                    instructions: [
+                        "Faire revenir les tranches de veau farinées.",
+                        "Ajouter les légumes émincés et faire revenir.",
+                        "Mouiller avec le vin blanc et réduire.",
+                        "Ajouter les tomates et le bouillon.",
+                        "Couvrir et laisser mijoter 2 heures.",
+                        "Servir avec un risotto alla milanese."
+                    ],
+                    source: "Cuisine Italienne"
+                },
+                {
+                    id: 14,
+                    title: "Tiramisu",
+                    image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Dessert italien emblématique à base de mascarpone, café et biscuits cuillère.",
+                    time: 30,
+                    servings: 6,
+                    rating: 4.9,
+                    category: "international",
+                    country: "italie",
+                    ingredients: [
+                        "500g de mascarpone",
+                        "4 œufs",
+                        "100g de sucre",
+                        "24 biscuits cuillère",
+                        "Café fort",
+                        "Cacao en poudre"
+                    ],
+                    instructions: [
+                        "Séparer les blancs des jaunes d'œufs.",
+                        "Fouetter les jaunes avec le sucre.",
+                        "Ajouter le mascarpone.",
+                        "Monter les blancs en neige et les incorporer délicatement.",
+                        "Tremper rapidement les biscuits dans le café.",
+                        "Alterner couches de biscuits et crème au mascarpone.",
+                        "Saupoudrer de cacao et réserver au frais 4 heures."
+                    ],
+                    source: "Cuisine Italienne"
+                },
+                // Recettes internationales - Thaïlande
+                {
+                    id: 15,
+                    title: "Pad Thai",
+                    image: "https://images.unsplash.com/photo-1559314809-0f31657403cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Nouilles de riz sautées thaïlandaises avec crevettes, tofu et germes de soja.",
+                    time: 30,
+                    servings: 2,
+                    rating: 4.7,
+                    category: "international",
+                    country: "thailande",
+                    ingredients: [
+                        "200g de nouilles de riz",
+                        "150g de crevettes",
+                        "100g de tofu",
+                        "2 œufs",
+                        "Germes de soja",
+                        "Ciboule",
+                        "Arachides concassées",
+                        "Sauce fish sauce",
+                        "Jus de tamarin",
+                        "Piment"
+                    ],
+                    instructions: [
+                        "Faire tremper les nouilles dans l'eau chaude.",
+                        "Faire revenir l'ail et le tofu.",
+                        "Ajouter les crevettes et les œufs.",
+                        "Ajouter les nouilles égouttées et la sauce.",
+                        "Ajouter les germes de soja et la ciboule.",
+                        "Servir avec des arachides concassées et du citron."
+                    ],
+                    source: "Cuisine Thaïlandaise"
+                },
+                {
+                    id: 16,
+                    title: "Tom Kha Gai",
+                    image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Soupe thaïlandaise au lait de coco, poulet, galanga et citronnelle.",
+                    time: 40,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "thailande",
+                    ingredients: [
+                        "400ml de lait de coco",
+                        "300g de poulet",
+                        "2 citronnelles",
+                        "4 tranches de galanga",
+                        "4 feuilles de kaffir",
+                        "Champignons",
+                        "Piment",
+                        "Sauce fish sauce",
+                        "Jus de citron vert",
+                        "Coriandre"
+                    ],
+                    instructions: [
+                        "Faire chauffer le lait de coco.",
+                        "Ajouter la citronnelle, le galanga et les feuilles de kaffir.",
+                        "Ajouter le poulet et les champignons.",
+                        "Laisser mijoter 20 minutes.",
+                        "Ajouter la sauce fish sauce, le jus de citron vert et le piment.",
+                        "Parsemer de coriandre avant de servir."
+                    ],
+                    source: "Cuisine Thaïlandaise"
+                },
+                {
+                    id: 17,
+                    title: "Satay de Poulet",
+                    image: "https://images.unsplash.com/photo-1553909489-cd47e0907980?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Brochettes de poulet marinées au lait de coco et épices, servies avec une sauce cacahuète.",
+                    time: 50,
+                    servings: 4,
+                    rating: 4.6,
+                    category: "international",
+                    country: "thailande",
+                    ingredients: [
+                        "500g de blanc de poulet",
+                        "Lait de coco",
+                        "Curry",
+                        "Cumin",
+                        "Coriandre",
+                        "Bambou pour brochettes",
+                        "Arachides",
+                        "Sauce soja",
+                        "Miel"
+                    ],
+                    instructions: [
+                        "Couper le poulet en cubes.",
+                        "Préparer la marinade avec lait de coco et épices.",
+                        "Faire mariner le poulet 2 heures.",
+                        "Enfiler sur des brochettes et griller.",
+                        "Préparer la sauce avec arachides, lait de coco, sauce soja et miel.",
+                        "Servir les brochettes avec la sauce."
+                    ],
+                    source: "Cuisine Thaïlandaise"
+                },
+                {
+                    id: 18,
+                    title: "Salade de Papaye Verte",
+                    image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Salade thaïlandaise piquante et acidulée à base de papaye verte, cacahuètes et crevettes.",
+                    time: 20,
+                    servings: 2,
+                    rating: 4.5,
+                    category: "international",
+                    country: "thailande",
+                    ingredients: [
+                        "1 papaye verte",
+                        "2 gousses d'ail",
+                        "2 piments",
+                        "2 cuillères à soupe de sauce fish sauce",
+                        "1 cuillère à soupe de jus de citron vert",
+                        "1 cuillère à soupe de sucre de palme",
+                        "Tomates cerises",
+                        "Cacahuètes",
+                        "Crevettes séchées"
+                    ],
+                    instructions: [
+                        "Râper la papaye en lanières.",
+                        "Piler l'ail et les piments dans un mortier.",
+                        "Ajouter la sauce fish sauce, le jus de citron et le sucre.",
+                        "Ajouter la papaye et les tomates cerises.",
+                        "Piler légèrement pour imprégner les saveurs.",
+                        "Ajouter les cacahuètes et les crevettes séchées."
+                    ],
+                    source: "Cuisine Thaïlandaise"
+                },
+                // Recettes internationales - Mexique
+                {
+                    id: 19,
+                    title: "Tacos al Pastor",
+                    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Tacos mexicains garnis de porc mariné, ananas et oignon, inspirés des shawarmas libanais.",
+                    time: 60,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "mexique",
+                    ingredients: [
+                        "500g de porc",
+                        "Ananas",
+                        "1 oignon",
+                        "Coriandre",
+                        "Tortillas de maïs",
+                        "Piments guajillo",
+                        "Vinaigre",
+                        "Origan",
+                        "Achiote"
+                    ],
+                    instructions: [
+                        "Préparer la marinade avec piments, épices et vinaigre.",
+                        "Faire mariner le porc 4 heures.",
+                        "Cuire le porc à la verticale si possible.",
+                        "Faire revenir l'oignon et l'ananas.",
+                        "Chauffer les tortillas.",
+                        "Garnir les tortillas de porc, ananas, oignon et coriandre."
+                    ],
+                    source: "Cuisine Mexicaine"
+                },
+                {
+                    id: 20,
+                    title: "Guacamole",
+                    image: "https://images.unsplash.com/photo-1550522043-6d2cd5f14e63?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Sauce mexicaine à base d'avocat, tomate, oignon et coriandre, parfumée au citron vert.",
+                    time: 15,
+                    servings: 4,
+                    rating: 4.9,
+                    category: "international",
+                    country: "mexique",
+                    ingredients: [
+                        "3 avocats",
+                        "1 tomate",
+                        "1/2 oignon",
+                        "Coriandre",
+                        "Jus de citron vert",
+                        "Piment jalapeño",
+                        "Sel"
+                    ],
+                    instructions: [
+                        "Écraser la chair des avocats.",
+                        "Ajouter les dés de tomate et d'oignon.",
+                        "Ajouter la coriandre hachée et le jalapeño.",
+                        "Arroser de jus de citron vert et saler.",
+                        "Mélanger délicatement."
+                    ],
+                    source: "Cuisine Mexicaine"
+                },
+                {
+                    id: 21,
+                    title: "Enchiladas Verdes",
+                    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Tortillas de maïs garnies de poulet et nappées d'une sauce verte au tomatillo, fromage et crème.",
+                    time: 50,
+                    servings: 4,
+                    rating: 4.7,
+                    category: "international",
+                    country: "mexique",
+                    ingredients: [
+                        "8 tortillas de maïs",
+                        "400g de poulet cuit",
+                        "500g de tomatillos",
+                        "2 piments serrano",
+                        "1 oignon",
+                        "Ail",
+                        "Crème fraîche",
+                        "Fromage fresco",
+                        "Coriandre"
+                    ],
+                    instructions: [
+                        "Préparer la sauce avec tomatillos, piments, oignon et ail.",
+                        "Mixer et faire cuire la sauce 10 minutes.",
+                        "Remplir les tortillas de poulet et les rouler.",
+                        "Napper de sauce verte et saupoudrer de fromage.",
+                        "Enfourner 20 minutes à 180°C.",
+                        "Servir avec de la crème et de la coriandre."
+                    ],
+                    source: "Cuisine Mexicaine"
+                },
+                {
+                    id: 22,
+                    title: "Churros",
+                    image: "https://images.unsplash.com/photo-1580375604815-3d35adef4ae9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Beignets allongés mexicains croustillants, saupoudrés de cannelle et sucre, servis avec du chocolat chaud.",
+                    time: 30,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "mexique",
+                    ingredients: [
+                        "250ml d'eau",
+                        "2 cuillères à soupe de sucre",
+                        "1 pincée de sel",
+                        "125g de farine",
+                        "1 œuf",
+                        "Huile de friture",
+                        "Cannelle",
+                        "Sucre",
+                        "Chocolat chaud"
+                    ],
+                    instructions: [
+                        "Porter à ébullition l'eau, le sucre, le sel et le beurre.",
+                        "Hors du feu, ajouter la farine en une fois.",
+                        "Remettre sur feu doux pour dessécher la pâte.",
+                        "Laisser refroidir et incorporer l'œuf.",
+                        "Mettre en poche avec douille cannelée.",
+                        "Frire les churros jusqu'à coloration.",
+                        "Rouler dans le mélange sucre-cannelle.",
+                        "Servir avec du chocolat chaud."
+                    ],
+                    source: "Cuisine Mexicaine"
+                },
+                // Recettes internationales - Japon
+                {
+                    id: 23,
+                    title: "Ramen au Porc",
+                    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Soupe japonaise avec nouilles, bouillon riche, porc confit, œuf mollet et légumes.",
+                    time: 120,
+                    servings: 4,
+                    rating: 4.9,
+                    category: "international",
+                    country: "japon",
+                    ingredients: [
+                        "4 portions de nouilles ramen",
+                        "4 œufs",
+                        "600g de poitrine de porc",
+                        "1 morceau de gingembre",
+                        "4 gousses d'ail",
+                        "Sauce soja",
+                        "Mirin",
+                        "Bouillon de poulet",
+                        "Germes de soja",
+                        "Oignon vert"
+                    ],
+                    instructions: [
+                        "Faire confire le porc 2 heures dans la sauce soja, mirin et aromates.",
+                        "Préparer les œufs mollets marinés.",
+                        "Faire le bouillon avec le bouillon de poulet, sauce soja et aromates.",
+                        "Cuire les nouilles.",
+                        "Découper le porc et les œufs en deux.",
+                        "Dresser les bols avec nouilles, bouillon, porc, œuf et garnitures."
+                    ],
+                    source: "Cuisine Japonaise"
+                },
+                {
+                    id: 24,
+                    title: "Sushi Assorti",
+                    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Assortiment de sushis traditionnels japonais : nigiri, maki et sashimi.",
+                    time: 60,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "japon",
+                    ingredients: [
+                        "300g de riz à sushi",
+                        "Vinaigre de riz",
+                        "Sucre",
+                        "Sel",
+                        "Saumon",
+                        "Thon",
+                        "Crevette",
+                        "Avocat",
+                        "Concombre",
+                        "Feuilles de nori",
+                        "Wasabi",
+                        "Sauce soja"
+                    ],
+                    instructions: [
+                        "Cuire le riz et l'assaisonner avec le vinaigre, sucre et sel.",
+                        "Préparer les nigiri avec les poissons tranchés.",
+                        "Rouler les maki avec nori, riz et garnitures.",
+                        "Couper les sushis en morceaux.",
+                        "Servir avec wasabi, gingembre mariné et sauce soja."
+                    ],
+                    source: "Cuisine Japonaise"
+                },
+                {
+                    id: 25,
+                    title: "Teriyaki Chicken",
+                    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Poulet grillé japonais avec une sauce teriyaki sucrée-salée à base de sauce soja et mirin.",
+                    time: 40,
+                    servings: 4,
+                    rating: 4.7,
+                    category: "international",
+                    country: "japon",
+                    ingredients: [
+                        "4 hauts de cuisse de poulet",
+                        "5 cuillères à soupe de sauce soja",
+                        "3 cuillères à soupe de mirin",
+                        "2 cuillères à soupe de saké",
+                        "2 cuillères à soupe de sucre",
+                        "1 morceau de gingembre",
+                        "Huile de sésame",
+                        "Graines de sésame"
+                    ],
+                    instructions: [
+                        "Faire mariner le poulet dans la sauce teriyaki 30 minutes.",
+                        "Cuire le poulet à feu moyen.",
+                        "Ajouter la marinade et laisser réduire.",
+                        "Arroser le poulet de sauce en cours de cuisson.",
+                        "Servir avec du riz blanc et saupoudrer de sésame."
+                    ],
+                    source: "Cuisine Japonaise"
+                },
+                {
+                    id: 26,
+                    title: "Mochi Glacé",
+                    image: "https://images.unsplash.com/photo-1567375728486-378a69e892d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Dessert japonais consistant en une boule de glace enrobée d'une pâte de riz gluant.",
+                    time: 30,
+                    servings: 6,
+                    rating: 4.6,
+                    category: "international",
+                    country: "japon",
+                    ingredients: [
+                        "150g de farine de riz gluant",
+                        "50g de sucre",
+                        "250ml d'eau",
+                        "Fécule de maïs",
+                        "Glace vanille",
+                        "Glace au thé vert",
+                        "Colorant alimentaire"
+                    ],
+                    instructions: [
+                        "Mélanger la farine, le sucre et l'eau.",
+                        "Cuire au micro-ondes 2 minutes.",
+                        "Étaler la pâte sur de la fécule de maïs.",
+                        "Découper des cercles.",
+                        "Disposer une boule de glace au centre.",
+                        "Referrer le mochi autour de la glace.",
+                        "Conserver au congélateur."
+                    ],
+                    source: "Cuisine Japonaise"
+                },
+                // Recettes internationales - France
+                {
+                    id: 27,
+                    title: "Coq au Vin",
+                    image: "https://images.unsplash.com/photo-1591386766620-837745193736?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Plat traditionnel français au poulet mijoté dans du vin rouge avec champignons et lardons.",
+                    time: 120,
+                    servings: 4,
+                    rating: 4.8,
+                    category: "international",
+                    country: "france",
+                    ingredients: [
+                        "1 poulet coupé en morceaux",
+                        "75cl de vin rouge",
+                        "200g de champignons de Paris",
+                        "150g de lardons",
+                        "20 petits oignons",
+                        "2 gousses d'ail",
+                        "Bouquet garni",
+                        "Farine"
+                    ],
+                    instructions: [
+                        "Faire revenir les lardons et les oignons.",
+                        "Faire dorer les morceaux de poulet farinés.",
+                        "Déglacer au vin rouge.",
+                        "Ajouter l'ail et le bouquet garni.",
+                        "Couvrir et laisser mijoter 1h30.",
+                        "Ajouter les champignons en fin de cuisson."
+                    ],
+                    source: "Cuisine Française"
+                },
+                {
+                    id: 28,
+                    title: "Quiche Lorraine",
+                    image: "https://images.unsplash.com/photo-1586810823526-8c50d6d7b70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Tarte salée française avec garniture de lardons, d'œufs et de crème.",
+                    time: 60,
+                    servings: 6,
+                    rating: 4.7,
+                    category: "international",
+                    country: "france",
+                    ingredients: [
+                        "1 pâte brisée",
+                        "200g de lardons",
+                        "4 œufs",
+                        "20cl de crème fraîche",
+                        "20cl de lait",
+                        "Noix de muscade",
+                        "Poivre"
+                    ],
+                    instructions: [
+                        "Foncer un moule à tarte avec la pâte.",
+                        "Faire revenir les lardons.",
+                        "Battre les œufs avec la crème et le lait.",
+                        "Ajouter la muscade et le poivre.",
+                        "Répartir les lardons sur le fond de tarte.",
+                        "Verser l'appareil à quiche.",
+                        "Cuire 40 minutes à 180°C."
+                    ],
+                    source: "Cuisine Française"
+                },
+                {
+                    id: 29,
+                    title: "Ratatouille",
+                    image: "https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Spécialité provençale à base de légumes mijotés : aubergines, courgettes, poivrons et tomates.",
+                    time: 80,
+                    servings: 6,
+                    rating: 4.6,
+                    category: "international",
+                    country: "france",
+                    ingredients: [
+                        "1 aubergine",
+                        "2 courgettes",
+                        "2 poivrons",
+                        "4 tomates",
+                        "2 oignons",
+                        "4 gousses d'ail",
+                        "Herbes de Provence",
+                        "Huile d'olive"
+                    ],
+                    instructions: [
+                        "Couper tous les légumes en dés.",
+                        "Faire revenir les oignons et l'ail.",
+                        "Ajouter les poivrons et cuire 10 minutes.",
+                        "Ajouter les aubergines et courgettes.",
+                        "Enfin ajouter les tomates et les herbes.",
+                        "Couvrir et laisser mijoter 45 minutes."
+                    ],
+                    source: "Cuisine Française"
+                },
+                {
+                    id: 30,
+                    title: "Crème Brûlée",
+                    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Dessent français classique consistant en une crème à la vanille recouverte d'une couche de sucre caramélisé.",
+                    time: 60,
+                    servings: 4,
+                    rating: 4.9,
+                    category: "international",
+                    country: "france",
+                    ingredients: [
+                        "500ml de crème liquide",
+                        "5 jaunes d'œufs",
+                        "100g de sucre",
+                        "1 gousse de vanille",
+                        "Sucre roux pour la caramélisation"
+                    ],
+                    instructions: [
+                        "Faire chauffer la crème avec la gousse de vanille fendue.",
+                        "Fouetter les jaunes avec le sucre.",
+                        "Verser la crème chaude sur les jaunes en fouettant.",
+                        "Verser dans les ramequins.",
+                        "Cuire au bain-marie 40 minutes à 100°C.",
+                        "Réfrigérer 4 heures.",
+                        "Saupoudrer de sucre roux et caraméliser au chalumeau."
+                    ],
+                    source: "Cuisine Française"
                 }
             ];
 
@@ -758,8 +1556,10 @@
             const navLinks = document.querySelectorAll('nav a');
             const recipesContainer = document.getElementById('recipesContainer');
             const recipeDetailContainer = document.getElementById('recipeDetailContainer');
+            const filterButtons = document.querySelectorAll('.filter-btn');
             let currentPage = 'home';
             let previousPage = 'home';
+            let currentFilter = 'all';
             
             // Fonction pour changer de page
             function navigateTo(pageId, data = null) {
@@ -791,11 +1591,26 @@
                 }
             }
             
+            // Filtrer les recettes
+            function filterRecipes() {
+                if (currentFilter === 'all') {
+                    return recipes;
+                } else if (currentFilter === 'international') {
+                    return recipes.filter(recipe => recipe.category === 'international');
+                } else if (currentFilter === 'rapide') {
+                    return recipes.filter(recipe => recipe.time <= 30);
+                } else {
+                    return recipes.filter(recipe => recipe.category === currentFilter);
+                }
+            }
+            
             // Charger les recettes dans la grille
             function loadRecipes() {
                 recipesContainer.innerHTML = '';
                 
-                recipes.forEach(recipe => {
+                const filteredRecipes = filterRecipes();
+                
+                filteredRecipes.forEach(recipe => {
                     const recipeCard = document.createElement('div');
                     recipeCard.className = 'recipe-card';
                     recipeCard.dataset.id = recipe.id;
@@ -809,6 +1624,7 @@
                             <div class="recipe-meta">
                                 <span><i class="far fa-clock"></i> ${recipe.time} min</span>
                                 <span><i class="fas fa-user"></i> ${recipe.servings} personnes</span>
+                                ${recipe.country ? `<span><i class="fas fa-globe"></i> ${recipe.country.charAt(0).toUpperCase() + recipe.country.slice(1)}</span>` : ''}
                             </div>
                             <p class="recipe-excerpt">${recipe.description}</p>
                             <div class="read-more">Voir la recette <i class="fas fa-arrow-right"></i></div>
@@ -845,6 +1661,7 @@
                         <span><i class="far fa-clock"></i> ${recipe.time} minutes</span>
                         <span><i class="fas fa-user"></i> ${recipe.servings} personnes</span>
                         <span><i class="fas fa-star"></i> ${recipe.rating}/5</span>
+                        ${recipe.country ? `<span><i class="fas fa-globe"></i> ${recipe.country.charAt(0).toUpperCase() + recipe.country.slice(1)}</span>` : ''}
                         <span><i class="fas fa-source"></i> Source: ${recipe.source}</span>
                     </div>
                     
@@ -891,6 +1708,16 @@
                     navigateTo(pageId);
                 });
             }
+            
+            // Gestion des filtres
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentFilter = button.getAttribute('data-filter');
+                    loadRecipes();
+                });
+            });
             
             // Gestion du bouton retour du navigateur
             window.addEventListener('popstate', function(e) {
