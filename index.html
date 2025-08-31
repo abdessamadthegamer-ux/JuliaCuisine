@@ -156,6 +156,7 @@
             z-index: 1;
             max-width: 800px;
             padding: 0 2rem;
+            animation: fadeIn 1.5s ease-in-out;
         }
         
         .hero-content h1 {
@@ -446,6 +447,7 @@
         .instructions ol {
             list-style: none;
             counter-reset: instruction;
+            padding-left: 0;
         }
         
         .instructions li {
@@ -528,6 +530,40 @@
             font-size: 0.9rem;
         }
         
+        /* Styles pour les publicités */
+        .ad-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .ad-container.horizontal {
+            width: 100%;
+        }
+        
+        .ad-container.vertical {
+            max-width: 300px;
+            margin: 2rem auto;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--brun);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -560,10 +596,41 @@
                 overflow-x: auto;
                 padding-bottom: 0.5rem;
             }
+            
+            .ad-container {
+                margin: 1.5rem 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Unités publicitaires -->
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"></script>
+
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"></script>
+
+    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
+
+    <script async="async" data-cfasync="false" src="//pl27549926.revenuecpmgate.com/2d05350bbe6162e1ce9c16ff5e3e3fdb/invoke.js"></script>
+
     <div id="app">
         <!-- Header et Navigation -->
         <header>
@@ -591,12 +658,24 @@
                     <a href="#" class="btn" data-page="recipes">Explorer les recettes</a>
                 </div>
             </section>
+            
+            <!-- Publicité en haut de page -->
+            <div class="ad-container horizontal">
+                <div class="ad-label">Publicité</div>
+                <div id="container-2d05350bbe6162e1ce9c16ff5e3e3fdb"></div>
+            </div>
         </div>
 
         <!-- Page des recettes -->
         <div id="recipes" class="page">
             <section class="recipes-section">
                 <h2 class="section-title">Recettes d'Automne</h2>
+                
+                <!-- Publicité en haut de page -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <div id="container-2d05350bbe6162e1ce9c16ff5e3e3fdb"></div>
+                </div>
                 
                 <div class="filters">
                     <button class="filter-btn active" data-filter="all">Toutes</button>
@@ -630,8 +709,29 @@
                     </button>
                 </div>
                 
+                <!-- Publicité au milieu des recettes -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"></script>
+                </div>
+                
                 <div class="recipes-grid" id="recipesContainer">
                     <!-- Les recettes seront ajoutées dynamiquement -->
+                </div>
+                
+                <!-- Publicité en bas de page -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
                 </div>
             </section>
         </div>
@@ -640,6 +740,27 @@
         <div id="recipe-detail" class="page">
             <div class="recipe-detail" id="recipeDetailContainer">
                 <!-- Le contenu de la recette sera ajouté dynamiquement -->
+                
+                <!-- Publicité en haut de page -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <div id="container-2d05350bbe6162e1ce9c16ff5e3e3fdb"></div>
+                </div>
+                
+                <!-- Publicité latérale (sera positionnée avec JS) -->
+                <div class="ad-container vertical" id="sidebar-ad">
+                    <div class="ad-label">Publicité</div>
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
+                            'format' : 'iframe',
+                            'height' : 300,
+                            'width' : 160,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"></script>
+                </div>
             </div>
         </div>
 
@@ -647,9 +768,22 @@
         <div id="about" class="page">
             <section class="recipes-section">
                 <h2 class="section-title">À propos de Julia Cuisine</h2>
+                
+                <!-- Publicité en haut de page -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <div id="container-2d05350bbe6162e1ce9c16ff5e3e3fdb"></div>
+                </div>
+                
                 <div style="max-width: 800px; margin: 0 auto;">
                     <p>Julia Cuisine est un blog dédié à la gastronomie française et aux saveurs de saison. Fondé par Julia Martin, passionnée de cuisine depuis son plus jeune âge, ce blog partage des recettes authentiques et des techniques culinaires pour tous les niveaux.</p>
                     <p>Notre mission est de rendre la cuisine accessible tout en célébrant la richesse des produits locaux et de saison. Chaque recette est soigneusement testée et photographée pour vous inspirer en cuisine.</p>
+                </div>
+                
+                <!-- Publicité en bas de page -->
+                <div class="ad-container horizontal">
+                    <div class="ad-label">Publicité</div>
+                    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
                 </div>
             </section>
         </div>
@@ -684,6 +818,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Données des recettes avec toutes les images
             const recipes = [
+                // Entrées
                 {
                     id: 1,
                     title: "Soupe de Potiron et Châtaignes",
@@ -714,6 +849,96 @@
                 },
                 {
                     id: 2,
+                    title: "Velouté de Patate Douce au Curcuma",
+                    image: "https://images.unsplash.com/photo-1543339305-5b5f34b5ce76?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une soupe onctueuse et vibrante à la patate douce, réchauffée par les notes épicées du curcuma.",
+                    time: 30,
+                    servings: 4,
+                    rating: 4.5,
+                    category: "entree",
+                    ingredients: [
+                        "800g de patates douces",
+                        "1 oignon",
+                        "1 litre de bouillon de légumes",
+                        "20cl de lait de coco",
+                        "1 cuillère à café de curcuma",
+                        "1 morceau de gingembre frais",
+                        "Huile d'olive",
+                        "Coriandre fraîche"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez les patates douces en dés.",
+                        "Émincez l'oignon et faites-le revenir dans une cocotte avec un peu d'huile d'olive.",
+                        "Ajoutez les patates douces, le curcuma et le gingembre râpé.",
+                        "Versez le bouillon et portez à ébullition. Laissez cuire 20 minutes.",
+                        "Mixez la soupe jusqu'à obtenir une texture lisse.",
+                        "Incorporez le lait de coco et mélangez bien.",
+                        "Servez avec des feuilles de coriandre et un filet d'huile d'olive."
+                    ],
+                    source: "Marmiton"
+                },
+                {
+                    id: 3,
+                    title: "Salade d'Automne aux Noix et Fromage de Chèvre",
+                    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une salade fraîche et croquante avec des noix toastées et du fromage de chèvre fondant.",
+                    time: 20,
+                    servings: 4,
+                    rating: 4.6,
+                    category: "entree",
+                    ingredients: [
+                        "1 salade verte (mesclun)",
+                        "100g de noix",
+                        "200g de fromage de chèvre",
+                        "2 poires",
+                        "Vinaigre balsamique",
+                        "Huile d'olive",
+                        "Miel",
+                        "Moutarde"
+                    ],
+                    instructions: [
+                        "Lavez et séchez la salade.",
+                        "Faites griller les noix à la poêle sans matière grasse.",
+                        "Coupez les poires en fines lamelles.",
+                        "Préparez la vinaigrette avec l'huile, le vinaigre, la moutarde et le miel.",
+                        "Disposez la salade, ajoutez les poires, les noix et le fromage de chèvre.",
+                        "Arrosez de vinaigrette et servez immédiatement."
+                    ],
+                    source: "Cuisine Actuelle"
+                },
+                {
+                    id: 4,
+                    title: "Tartelettes aux Champignons et Lardons",
+                    image: "https://images.unsplash.com/photo-1570194065313-716c0a1c5bae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Des tartelettes feuilletées garnies de champignons et lardons, parfaites pour l'automne.",
+                    time: 40,
+                    servings: 6,
+                    rating: 4.7,
+                    category: "entree",
+                    ingredients: [
+                        "1 pâte feuilletée",
+                        "300g de champignons de Paris",
+                        "150g de lardons",
+                        "20cl de crème fraîche",
+                        "1 oignon",
+                        "2 œufs",
+                        "Muscade",
+                        "Persil"
+                    ],
+                    instructions: [
+                        "Étalez la pâte et découpez des cercles pour foncer des moules à tartelettes.",
+                        "Faites revenir les lardons et l'oignon émincé.",
+                        "Ajoutez les champignons coupés en lamelles et faites cuire 10 minutes.",
+                        "Mélangez avec la crème, les œufs, la muscade et le persil.",
+                        "Répartissez la garniture dans les fonds de tarte.",
+                        "Enfournez à 180°C pendant 25 minutes."
+                    ],
+                    source: "Journal des Femmes"
+                },
+                
+                // Plats principaux
+                {
+                    id: 5,
                     title: "Coq au Vin Rouge aux Champignons",
                     image: "https://images.unsplash.com/photo-1571167366136-b57e07761694?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Un classique de la cuisine française revisité avec des champignons de saison.",
@@ -742,36 +967,7 @@
                     source: "750g"
                 },
                 {
-                    id: 3,
-                    title: "Tarte Rustique aux Pommes et Caramel de Sésame",
-                    image: "https://images.unsplash.com/photo-1563227810-2f42c4731beb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Une tarte aux pommes gourmande avec une touche originale de caramel au sésame.",
-                    time: 50,
-                    servings: 6,
-                    rating: 4.9,
-                    category: "dessert",
-                    ingredients: [
-                        "1 pâte brisée",
-                        "4 pommes",
-                        "100g de sucre roux",
-                        "50g de beurre",
-                        "2 cuillères à soupe de graines de sésame",
-                        "1 cuillère à soupe de crème fraîche",
-                        "Cannelle en poudre"
-                    ],
-                    instructions: [
-                        "Étalez la pâte brisée dans un moule à tarte.",
-                        "Épluchez et coupez les pommes en lamelles.",
-                        "Disposez les lamelles de pommes en rosace sur la pâte.",
-                        "Faites fondre le beurre avec le sucre roux dans une casserole.",
-                        "Ajoutez les graines de sésame et la crème fraîche pour former un caramel.",
-                        "Versez le caramel sur les pommes et saupoudrez de cannelle.",
-                        "Enfournez à 180°C pendant 30 minutes."
-                    ],
-                    source: "Pinterest"
-                },
-                {
-                    id: 4,
+                    id: 6,
                     title: "Risotto aux Cèpes et Parmesan",
                     image: "https://images.unsplash.com/photo-1570194065313-716c0a1c5bae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Un risotto crémeux aux cèpes frais et au parmesan, qui capture l'essence de la forêt en automne.",
@@ -802,7 +998,94 @@
                     source: "ELLE à Table"
                 },
                 {
-                    id: 5,
+                    id: 7,
+                    title: "Gratin de Courge Butternut et Chèvre",
+                    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un gratin réconfortant à base de courge butternut et de fromage de chèvre, parfumé au thym.",
+                    time: 60,
+                    servings: 6,
+                    rating: 4.7,
+                    category: "plat",
+                    ingredients: [
+                        "1 courge butternut",
+                        "200g de fromage de chèvre",
+                        "20cl de crème liquide",
+                        "2 œufs",
+                        "100g de comté râpé",
+                        "Ail en poudre",
+                        "Thym frais",
+                        "Noix de muscade"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez la courge en dés.",
+                        "Faites cuire à la vapeur 15 minutes jusqu'à ce qu'elle soit tendre.",
+                        "Écrasez la courge en purée.",
+                        "Ajoutez la crème, les œufs, le fromage de chèvre émietté et les épices.",
+                        "Versez dans un plat à gratin et parsemez de comté râpé.",
+                        "Enfournez à 180°C pendant 30 minutes."
+                    ],
+                    source: "Marmiton"
+                },
+                {
+                    id: 8,
+                    title: "Pavés de Saumon à l'Aneth",
+                    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Des filets de saumon cuits à la vapeur avec de l'aneth frais, servis avec une sauce au citron.",
+                    time: 25,
+                    servings: 4,
+                    rating: 4.5,
+                    category: "plat",
+                    ingredients: [
+                        "4 pavés de saumon",
+                        "1 bouquet d'aneth",
+                        "1 citron",
+                        "2 cuillères à soupe d'huile d'olive",
+                        "Sel et poivre",
+                        "100g de crème fraîche",
+                        "1 échalote"
+                    ],
+                    instructions: [
+                        "Salez et poivrez les pavés de saumon.",
+                        "Disposez des branches d'aneth sur le saumon.",
+                        "Faites cuire à la vapeur pendant 15 minutes.",
+                        "Pendant ce temps, préparez la sauce en mélangeant la crème, le jus de citron, l'échalote hachée et l'aneth ciselé.",
+                        "Servez le saumon avec la sauce à l'aneth."
+                    ],
+                    source: "750g"
+                },
+                
+                // Desserts
+                {
+                    id: 9,
+                    title: "Tarte Rustique aux Pommes et Caramel de Sésame",
+                    image: "https://images.unsplash.com/photo-1563227810-2f42c4731beb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une tarte aux pommes gourmande avec une touche originale de caramel au sésame.",
+                    time: 50,
+                    servings: 6,
+                    rating: 4.9,
+                    category: "dessert",
+                    ingredients: [
+                        "1 pâte brisée",
+                        "4 pommes",
+                        "100g de sucre roux",
+                        "50g de beurre",
+                        "2 cuillères à soupe de graines de sésame",
+                        "1 cuillère à soupe de crème fraîche",
+                        "Cannelle en poudre"
+                    ],
+                    instructions: [
+                        "Étalez la pâte brisée dans un moule à tarte.",
+                        "Épluchez et coupez les pommes en lamelles.",
+                        "Disposez les lamelles de pommes en rosace sur la pâte.",
+                        "Faites fondre le beurre avec le sucre roux dans une casserole.",
+                        "Ajoutez les graines de sésame et la crème fraîche pour former un caramel.",
+                        "Versez le caramel sur les pommes et saupoudrez de cannelle.",
+                        "Enfournez à 180°C pendant 30 minutes."
+                    ],
+                    source: "Pinterest"
+                },
+                {
+                    id: 10,
                     title: "Crumble Poire et Chocolat",
                     image: "https://images.unsplash.com/photo-1623241894050-5c3a62592ab6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Un dessert irrésistible qui allie la douceur des poires fondantes au riche goût du chocolat.",
@@ -832,38 +1115,181 @@
                     source: "Pinterest"
                 },
                 {
-                    id: 6,
-                    title: "Velouté de Patate Douce au Curcuma",
-                    image: "https://images.unsplash.com/photo-1543339305-5b5f34b5ce76?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Une soupe onctueuse et vibrante à la patate douce, réchauffée par les notes épicées du curcuma.",
-                    time: 30,
-                    servings: 4,
-                    rating: 4.5,
-                    category: "entree",
+                    id: 11,
+                    title: "Gâteau aux Noix et Miel",
+                    image: "https://images.unsplash.com/photo-1587248720328-4daa08f11b9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un gâteau moelleux parfumé au miel et garni de noix croquantes, parfait pour l'automne.",
+                    time: 45,
+                    servings: 8,
+                    rating: 4.7,
+                    category: "dessert",
                     ingredients: [
-                        "800g de patates douces",
-                        "1 oignon",
-                        "1 litre de bouillon de légumes",
-                        "20cl de lait de coco",
-                        "1 cuillère à café de curcuma",
-                        "1 morceau de gingembre frais",
-                        "Huile d'olive",
-                        "Coriandre fraîche"
+                        "200g de farine",
+                        "150g de sucre",
+                        "100g de beurre",
+                        "3 œufs",
+                        "100g de noix concassées",
+                        "4 cuillères à soupe de miel",
+                        "1 sachet de levure",
+                        "1 pincée de sel"
                     ],
                     instructions: [
-                        "Épluchez et coupez les patates douces en dés.",
-                        "Émincez l'oignon et faites-le revenir dans une cocotte avec un peu d'huile d'olive.",
-                        "Ajoutez les patates douces, le curcuma et le gingembre râpé.",
-                        "Versez le bouillon et portez à ébullition. Laissez cuire 20 minutes.",
-                        "Mixez la soupe jusqu'à obtenir une texture lisse.",
-                        "Incorporez le lait de coco et mélangez bien.",
-                        "Servez avec des feuilles de coriandre et un filet d'huile d'olive."
+                        "Préchauffez le four à 180°C.",
+                        "Fouettez le beurre ramolli avec le sucre.",
+                        "Ajoutez les œufs un par un en fouettant.",
+                        "Incorporez la farine, la levure et le sel.",
+                        "Ajoutez les noix et le miel.",
+                        "Versez dans un moule beurré et enfournez 35 minutes.",
+                        "Laissez refroidir avant de démouler."
+                    ],
+                    source: "Cuisine Actuelle"
+                },
+                {
+                    id: 12,
+                    title: "Clafoutis aux Poires et aux Amandes",
+                    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Un clafoutis léger et moelleux aux poires et amandes, une recette simple et délicieuse.",
+                    time: 40,
+                    servings: 6,
+                    rating: 4.6,
+                    category: "dessert",
+                    ingredients: [
+                        "4 poires",
+                        "100g de poudre d'amandes",
+                        "80g de sucre",
+                        "3 œufs",
+                        "50cl de lait",
+                        "50g de farine",
+                        "1 sachet de sucre vanillé",
+                        "Beurre pour le moule"
+                    ],
+                    instructions: [
+                        "Épluchez et coupez les poires en morceaux.",
+                        "Disposez-les dans un moule beurré.",
+                        "Mélangez la farine, la poudre d'amandes et les sucres.",
+                        "Ajoutez les œufs puis le lait progressivement.",
+                        "Versez la préparation sur les poires.",
+                        "Enfournez à 180°C pendant 30 minutes.",
+                        "Servez tiède ou froid."
+                    ],
+                    source: "Journal des Femmes"
+                },
+                
+                // Recettes rapides (< 30 min)
+                {
+                    id: 13,
+                    title: "Pâtes aux Champignons et Crème",
+                    image: "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Des pâtes crémeuses aux champignons, une recette express et réconfortante.",
+                    time: 20,
+                    servings: 4,
+                    rating: 4.5,
+                    category: "rapide",
+                    ingredients: [
+                        "400g de pâtes",
+                        "300g de champignons",
+                        "20cl de crème fraîche",
+                        "1 gousse d'ail",
+                        "Persil",
+                        "Huile d'olive",
+                        "Sel et poivre"
+                    ],
+                    instructions: [
+                        "Faites cuire les pâtes selon les instructions du paquet.",
+                        "Émincez les champignons et faites-les revenir avec l'ail.",
+                        "Ajoutez la crème fraîche et laissez mijoter 5 minutes.",
+                        "Incorporez les pâtes égouttées.",
+                        "Salez, poivrez et parsemez de persil haché.",
+                        "Servez immédiatement."
                     ],
                     source: "Marmiton"
                 },
-                // Recettes internationales - Maroc
                 {
-                    id: 7,
+                    id: 14,
+                    title: "Omelette aux Fines Herbes",
+                    image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une omelette légère et aérienne parfumée aux fines herbes fraîches.",
+                    time: 15,
+                    servings: 2,
+                    rating: 4.3,
+                    category: "rapide",
+                    ingredients: [
+                        "4 œufs",
+                        "1 cuillère à soupe de fines herbes (ciboulette, persil, estragon)",
+                        "20g de beurre",
+                        "2 cuillères à soupe de fromage râpé",
+                        "Sel et poivre"
+                    ],
+                    instructions: [
+                        "Battez les œufs en omelette avec les fines herbes, le sel et le poivre.",
+                        "Faites chauffer le beurre dans une poêle.",
+                        "Versez les œufs et faites cuire à feu moyen.",
+                        "Ajoutez le fromage râpé en milieu de cuisson.",
+                        "Pliez l'omelette et servez immédiatement."
+                    ],
+                    source: "Cuisine Actuelle"
+                },
+                {
+                    id: 15,
+                    title: "Salade de Quinoa aux Légumes Croquants",
+                    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Une salade complète et nutritive au quinoa et légumes croquants, parfaite pour un repas rapide.",
+                    time: 25,
+                    servings: 4,
+                    rating: 4.6,
+                    category: "rapide",
+                    ingredients: [
+                        "200g de quinoa",
+                        "1 concombre",
+                        "2 tomates",
+                        "1 poivron",
+                        "1 boîte de maïs",
+                        "Juice de citron",
+                        "Huile d'olive",
+                        "Herbes de Provence"
+                    ],
+                    instructions: [
+                        "Faites cuire le quinoa selon les instructions du paquet.",
+                        "Lavez et coupez les légumes en dés.",
+                        "Mélangez le quinoa refroidi avec les légumes.",
+                        "Préparez une vinaigrette avec l'huile, le jus de citron et les herbes.",
+                        "Incorporez la vinaigrette à la salade.",
+                        "Servez frais."
+                    ],
+                    source: "750g"
+                },
+                {
+                    id: 16,
+                    title: "Wraps au Poulet et Avocat",
+                    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    description: "Des wraps garnis de poulet, avocat et crudités, idéals pour un repas sur le pouce.",
+                    time: 20,
+                    servings: 4,
+                    rating: 4.4,
+                    category: "rapide",
+                    ingredients: [
+                        "4 tortillas de blé",
+                        "2 blancs de poulet cuits",
+                        "1 avocat",
+                        "1 tomate",
+                        "Quelques feuilles de laitue",
+                        "2 cuillères à soupe de fromage frais",
+                        "Sauce au choix"
+                    ],
+                    instructions: [
+                        "Émincez le poulet cuit.",
+                        "Écrasez l'avocat à la fourchette.",
+                        "Répartissez le fromage frais sur les tortillas.",
+                        "Ajoutez le poulet, l'avocat, la tomate en dés et la laitue.",
+                        "Arrosez de sauce et roulez les wraps.",
+                        "Servez immédiatement."
+                    ],
+                    source: "Journal des Femmes"
+                },
+                
+                // Recettes internationales - Maroc (4 recettes)
+                {
+                    id: 17,
                     title: "Tajine de Poulet Citron Confit",
                     image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Un tajine marocain traditionnel au poulet, citron confit et olives, parfumé aux épices orientales.",
@@ -887,7 +1313,7 @@
                     ],
                     instructions: [
                         "Faites revenir les oignons et l'ail dans l'huile d'olive.",
-                        "Ajoutez les épices et faites torréfier quelques seconds.",
+                        "Ajoutez les épices et faites torréfier quelques secondes.",
                         "Ajoutez les morceaux de poulet et faites dorer sur toutes les faces.",
                         "Coupez le citron confit en quartiers et ajoutez-le avec les olives.",
                         "Couvrez d'eau et laissez mijoter à feu doux pendant 1 heure.",
@@ -896,7 +1322,7 @@
                     source: "Cuisine Marocaine"
                 },
                 {
-                    id: 8,
+                    id: 18,
                     title: "Couscous Royal",
                     image: "https://images.unsplash.com/photo-1530554764230-e5e4b17ab102?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Le plat traditionnel marocain avec semoule, légumes et viandes variées, cuit à la vapeur.",
@@ -932,7 +1358,7 @@
                     source: "Cuisine Marocaine"
                 },
                 {
-                    id: 9,
+                    id: 19,
                     title: "Pastilla au Poulet",
                     image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Feuilleté sucré-salé marocain farci de poulet, amandes et épices, saupoudré de sucre glace et cannelle.",
@@ -949,7 +1375,7 @@
                         "4 œufs",
                         "1 bouquet de persil",
                         "Cannelle",
-                        "Suce glace",
+                        "Sucre glace",
                         "Beurre fondu",
                         "Safran",
                         "Gingembre"
@@ -966,7 +1392,7 @@
                     source: "Cuisine Marocaine"
                 },
                 {
-                    id: 10,
+                    id: 20,
                     title: "Harira Marocaine",
                     image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Soupe traditionnelle marocaine à base de lentilles, pois chiches, tomates et épices, souvent servie pendant le Ramadan.",
@@ -999,9 +1425,10 @@
                     ],
                     source: "Cuisine Marocaine"
                 },
-                // Recettes internationales - Italie
+                
+                // Recettes internationales - Italie (4 recettes)
                 {
-                    id: 11,
+                    id: 21,
                     title: "Pizza Margherita",
                     image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "La pizza italienne traditionnelle avec sauce tomate, mozzarella et basilic frais.",
@@ -1028,7 +1455,7 @@
                     source: "Cuisine Italienne"
                 },
                 {
-                    id: 12,
+                    id: 22,
                     title: "Risotto aux Champignons",
                     image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Risotto crémeux aux champignons et parmesan, typique de la cuisine italienne du Nord.",
@@ -1059,7 +1486,7 @@
                     source: "Cuisine Italienne"
                 },
                 {
-                    id: 13,
+                    id: 23,
                     title: "Osso Buco",
                     image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Plat milanais traditionnel à base de jarret de veau braisé avec légumes et vin blanc.",
@@ -1089,7 +1516,7 @@
                     source: "Cuisine Italienne"
                 },
                 {
-                    id: 14,
+                    id: 24,
                     title: "Tiramisu",
                     image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Dessert italien emblématique à base de mascarpone, café et biscuits cuillère.",
@@ -1117,9 +1544,10 @@
                     ],
                     source: "Cuisine Italienne"
                 },
-                // Recettes internationales - Thaïlande
+                
+                // Recettes internationales - Thaïlande (4 recettes)
                 {
-                    id: 15,
+                    id: 25,
                     title: "Pad Thai",
                     image: "https://images.unsplash.com/photo-1559314809-0f31657403cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Nouilles de riz sautées thaïlandaises avec crevettes, tofu et germes de soja.",
@@ -1151,7 +1579,7 @@
                     source: "Cuisine Thaïlandaise"
                 },
                 {
-                    id: 16,
+                    id: 26,
                     title: "Tom Kha Gai",
                     image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Soupe thaïlandaise au lait de coco, poulet, galanga et citronnelle.",
@@ -1183,7 +1611,7 @@
                     source: "Cuisine Thaïlandaise"
                 },
                 {
-                    id: 17,
+                    id: 27,
                     title: "Satay de Poulet",
                     image: "https://images.unsplash.com/photo-1553909489-cd47e0907980?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Brochettes de poulet marinées au lait de coco et épices, servies avec une sauce cacahuète.",
@@ -1205,7 +1633,7 @@
                     ],
                     instructions: [
                         "Couper le poulet en cubes.",
-                        "Préparer la marinade avec lait de coco et épices.",
+                        "Préparer la marinade avec lait de coco et épites.",
                         "Faire mariner le poulet 2 heures.",
                         "Enfiler sur des brochettes et griller.",
                         "Préparer la sauce avec arachides, lait de coco, sauce soja et miel.",
@@ -1214,7 +1642,7 @@
                     source: "Cuisine Thaïlandaise"
                 },
                 {
-                    id: 18,
+                    id: 28,
                     title: "Salade de Papaye Verte",
                     image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Salade thaïlandaise piquante et acidulée à base de papaye verte, cacahuètes et crevettes.",
@@ -1244,9 +1672,10 @@
                     ],
                     source: "Cuisine Thaïlandaise"
                 },
-                // Recettes internationales - Mexique
+                
+                // Recettes internationales - Mexique (4 recettes)
                 {
-                    id: 19,
+                    id: 29,
                     title: "Tacos al Pastor",
                     image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Tacos mexicains garnis de porc mariné, ananas et oignon, inspirés des shawarmas libanais.",
@@ -1277,7 +1706,7 @@
                     source: "Cuisine Mexicaine"
                 },
                 {
-                    id: 20,
+                    id: 30,
                     title: "Guacamole",
                     image: "https://images.unsplash.com/photo-1550522043-6d2cd5f14e63?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Sauce mexicaine à base d'avocat, tomate, oignon et coriandre, parfumée au citron vert.",
@@ -1305,7 +1734,7 @@
                     source: "Cuisine Mexicaine"
                 },
                 {
-                    id: 21,
+                    id: 31,
                     title: "Enchiladas Verdes",
                     image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Tortillas de maïs garnies de poulet et nappées d'une sauce verte au tomatillo, fromage et crème.",
@@ -1336,7 +1765,7 @@
                     source: "Cuisine Mexicaine"
                 },
                 {
-                    id: 22,
+                    id: 32,
                     title: "Churros",
                     image: "https://images.unsplash.com/photo-1580375604815-3d35adef4ae9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Beignets allongés mexicains croustillants, saupoudrés de cannelle et sucre, servis avec du chocolat chaud.",
@@ -1347,7 +1776,7 @@
                     country: "mexique",
                     ingredients: [
                         "250ml d'eau",
-                        "2 cuillères à soupe de sucre",
+                        "2 cuillères à soupe de subre",
                         "1 pincée de sel",
                         "125g de farine",
                         "1 œuf",
@@ -1368,9 +1797,10 @@
                     ],
                     source: "Cuisine Mexicaine"
                 },
-                // Recettes internationales - Japon
+                
+                // Recettes internationales - Japon (4 recettes)
                 {
-                    id: 23,
+                    id: 33,
                     title: "Ramen au Porc",
                     image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Soupe japonaise avec nouilles, bouillon riche, porc confit, œuf mollet et légumes.",
@@ -1402,7 +1832,7 @@
                     source: "Cuisine Japonaise"
                 },
                 {
-                    id: 24,
+                    id: 34,
                     title: "Sushi Assorti",
                     image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Assortiment de sushis traditionnels japonais : nigiri, maki et sashimi.",
@@ -1435,7 +1865,7 @@
                     source: "Cuisine Japonaise"
                 },
                 {
-                    id: 25,
+                    id: 35,
                     title: "Teriyaki Chicken",
                     image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Poulet grillé japonais avec une sauce teriyaki sucrée-salée à base de sauce soja et mirin.",
@@ -1464,7 +1894,7 @@
                     source: "Cuisine Japonaise"
                 },
                 {
-                    id: 26,
+                    id: 36,
                     title: "Mochi Glacé",
                     image: "https://images.unsplash.com/photo-1567375728486-378a69e892d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Dessert japonais consistant en une boule de glace enrobée d'une pâte de riz gluant.",
@@ -1493,9 +1923,10 @@
                     ],
                     source: "Cuisine Japonaise"
                 },
-                // Recettes internationales - France
+                
+                // Recettes internationales - France (4 recettes)
                 {
-                    id: 27,
+                    id: 37,
                     title: "Coq au Vin",
                     image: "https://images.unsplash.com/photo-1591386766620-837745193736?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Plat traditionnel français au poulet mijoté dans du vin rouge avec champignons et lardons.",
@@ -1525,7 +1956,7 @@
                     source: "Cuisine Française"
                 },
                 {
-                    id: 28,
+                    id: 38,
                     title: "Quiche Lorraine",
                     image: "https://images.unsplash.com/photo-1586810823526-8c50d6d7b70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Tarte salée française avec garniture de lardons, d'œufs et de crème.",
@@ -1555,7 +1986,7 @@
                     source: "Cuisine Française"
                 },
                 {
-                    id: 29,
+                    id: 39,
                     title: "Ratatouille",
                     image: "https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Spécialité provençale à base de légumes mijotés : aubergines, courgettes, poivrons et tomates.",
@@ -1585,7 +2016,7 @@
                     source: "Cuisine Française"
                 },
                 {
-                    id: 30,
+                    id: 40,
                     title: "Crème Brûlée",
                     image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     description: "Dessent français classique consistant en une crème à la vanille recouverte d'une couche de sucre caramélisé.",
@@ -1627,6 +2058,20 @@
             let currentFilter = 'all';
             let currentCountry = null;
             
+            // Fonction pour positionner la publicité latérale
+            function positionSidebarAd() {
+                if (currentPage === 'recipe-detail') {
+                    const sidebarAd = document.getElementById('sidebar-ad');
+                    const ingredientsSection = document.querySelector('.ingredients');
+                    
+                    if (ingredientsSection && sidebarAd) {
+                        sidebarAd.style.position = 'absolute';
+                        sidebarAd.style.right = '5%';
+                        sidebarAd.style.top = (ingredientsSection.offsetTop + 100) + 'px';
+                    }
+                }
+            }
+            
             // Fonction pour changer de page
             function navigateTo(pageId, data = null) {
                 previousPage = currentPage;
@@ -1653,6 +2098,8 @@
                         loadRecipes();
                     } else if (pageId === 'recipe-detail' && data) {
                         loadRecipeDetail(data);
+                        // Positionner la pub latérale après le chargement
+                        setTimeout(positionSidebarAd, 100);
                     }
                 }
             }
@@ -1679,7 +2126,28 @@
                 
                 const filteredRecipes = filterRecipes();
                 
-                filteredRecipes.forEach(recipe => {
+                // Insérer une publicité après chaque groupe de 4 recettes
+                filteredRecipes.forEach((recipe, index) => {
+                    // Insérer une publicité après chaque 4ème recette
+                    if (index > 0 && index % 4 === 0) {
+                        const adContainer = document.createElement('div');
+                        adContainer.className = 'ad-container horizontal';
+                        adContainer.innerHTML = `
+                            <div class="ad-label">Publicité</div>
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                            <\/script>
+                            <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"><\/script>
+                        `;
+                        recipesContainer.appendChild(adContainer);
+                    }
+                    
                     const recipeCard = document.createElement('div');
                     recipeCard.className = 'recipe-card';
                     recipeCard.dataset.id = recipe.id;
@@ -1834,6 +2302,11 @@
                         navigateTo('recipes');
                     }
                 }
+                
+                // Positionner la pub latérale si on est sur une page de détail
+                if (currentPage === 'recipe-detail') {
+                    setTimeout(positionSidebarAd, 500);
+                }
             });
             
             // Initialiser l'état de navigation
@@ -1846,6 +2319,13 @@
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
+                }
+            });
+            
+            // Redimensionnement de la fenêtre
+            window.addEventListener('resize', function() {
+                if (currentPage === 'recipe-detail') {
+                    positionSidebarAd();
                 }
             });
             
