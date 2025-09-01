@@ -58,8 +58,7 @@
         .page {
             display: none;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease;
             padding-top: 80px;
             flex: 1;
         }
@@ -67,7 +66,6 @@
         .page.active {
             display: block;
             opacity: 1;
-            transform: translateY(0);
         }
         
         /* Header et Navigation */
@@ -377,6 +375,7 @@
             padding: 2rem 5%;
             max-width: 1000px;
             margin: 0 auto;
+            position: relative;
         }
         
         .recipe-detail-image {
@@ -604,33 +603,6 @@
     </style>
 </head>
 <body>
-    <!-- Unités publicitaires -->
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"></script>
-
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
-            'format' : 'iframe',
-            'height' : 300,
-            'width' : 160,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"></script>
-
-    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
-
-    <script async="async" data-cfasync="false" src="//pl27549926.revenuecpmgate.com/2d05350bbe6162e1ce9c16ff5e3e3fdb/invoke.js"></script>
-
     <div id="app">
         <!-- Header et Navigation -->
         <header>
@@ -712,16 +684,7 @@
                 <!-- Publicité au milieu des recettes -->
                 <div class="ad-container horizontal">
                     <div class="ad-label">Publicité</div>
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
-                            'format' : 'iframe',
-                            'height' : 250,
-                            'width' : 300,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"></script>
+                    <div id="ad-unit-1"></div>
                 </div>
                 
                 <div class="recipes-grid" id="recipesContainer">
@@ -731,7 +694,7 @@
                 <!-- Publicité en bas de page -->
                 <div class="ad-container horizontal">
                     <div class="ad-label">Publicité</div>
-                    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
+                    <div id="ad-unit-3"></div>
                 </div>
             </section>
         </div>
@@ -750,16 +713,7 @@
                 <!-- Publicité latérale (sera positionnée avec JS) -->
                 <div class="ad-container vertical" id="sidebar-ad">
                     <div class="ad-label">Publicité</div>
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
-                            'format' : 'iframe',
-                            'height' : 300,
-                            'width' : 160,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"></script>
+                    <div id="ad-unit-2"></div>
                 </div>
             </div>
         </div>
@@ -783,7 +737,7 @@
                 <!-- Publicité en bas de page -->
                 <div class="ad-container horizontal">
                     <div class="ad-label">Publicité</div>
-                    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
+                    <div id="ad-unit-3"></div>
                 </div>
             </section>
         </div>
@@ -814,9 +768,36 @@
         </footer>
     </div>
 
+    <!-- Ad Units -->
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"></script>
+
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"></script>
+
+    <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'></script>
+
+    <script async="async" data-cfasync="false" src="//pl27549926.revenuecpmgate.com/2d05350bbe6162e1ce9c16ff5e3e3fdb/invoke.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Données des recettes avec toutes les images
+            // Données des recettes avec toutes les images (pork/wine recipes removed)
             const recipes = [
                 // Entrées
                 {
@@ -936,36 +917,7 @@
                     source: "Journal des Femmes"
                 },
                 
-                // Plats principaux
-                {
-                    id: 5,
-                    title: "Coq au Vin Rouge aux Champignons",
-                    image: "https://images.unsplash.com/photo-1571167366136-b57e07761694?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Un classique de la cuisine française revisité avec des champignons de saison.",
-                    time: 120,
-                    servings: 6,
-                    rating: 4.7,
-                    category: "plat",
-                    ingredients: [
-                        "1 poulet coupé en morceaux",
-                        "75cl de vin rouge",
-                        "200g de champignons de Paris",
-                        "150g de lardons",
-                        "200g d'oignons grelots",
-                        "2 gousses d'ail",
-                        "Bouquet garni (thym, laurier)",
-                        "2 cuillères à soupe de farine"
-                    ],
-                    instructions: [
-                        "Faites revenir les lardons dans une cocotte. Ajoutez les morceaux de poulet et faites dorer de tous côtés.",
-                        "Saupoudrez de farine et mélangez bien.",
-                        "Versez le vin rouge, ajoutez l'ail écrasé, le bouquet garni, les oignons grelots et les champignons.",
-                        "Couvrez et laissez mijoter à feu doux pendant 1h30.",
-                        "Retirez le couvercle et laissez réduire encore 15 minutes.",
-                        "Servez chaud avec des pommes de terre vapeur ou des pâtes fraîches."
-                    ],
-                    source: "750g"
-                },
+                // Plats principaux (pork/wine recipes removed)
                 {
                     id: 6,
                     title: "Risotto aux Cèpes et Parmesan",
@@ -1020,7 +972,7 @@
                         "Épluchez et coupez la courge en dés.",
                         "Faites cuire à la vapeur 15 minutes jusqu'à ce qu'elle soit tendre.",
                         "Écrasez la courge en purée.",
-                        "Ajoutez la crème, les œufs, le fromage de chèvre émietté et les épices.",
+                        "Ajoutez la crème, les œufs, le fromage de chèvre émietté et les épiques.",
                         "Versez dans un plat à gratin et parsemez de comté râpé.",
                         "Enfournez à 180°C pendant 30 minutes."
                     ],
@@ -1037,7 +989,7 @@
                     category: "plat",
                     ingredients: [
                         "4 pavés de saumon",
-                        "1 bouquet d'aneth",
+                        "1 bouquet d'Aneth",
                         "1 citron",
                         "2 cuillères à soupe d'huile d'olive",
                         "Sel et poivre",
@@ -1135,7 +1087,7 @@
                     ],
                     instructions: [
                         "Préchauffez le four à 180°C.",
-                        "Fouettez le beurre ramolli avec le sucre.",
+                        "Fouettez le beurre ramolli avec le sucer.",
                         "Ajoutez les œufs un par un en fouettant.",
                         "Incorporez la farine, la levure et le sel.",
                         "Ajoutez les noix et le miel.",
@@ -1197,7 +1149,7 @@
                     instructions: [
                         "Faites cuire les pâtes selon les instructions du paquet.",
                         "Émincez les champignons et faites-les revenir avec l'ail.",
-                        "Ajoutez la crème fraîche et laissez mijoter 5 minutes.",
+                        "Ajoutez la crème fraîche et laissez mijouter 5 minutes.",
                         "Incorporez les pâtes égouttées.",
                         "Salez, poivrez et parsemez de persil haché.",
                         "Servez immédiatement."
@@ -1244,7 +1196,7 @@
                         "2 tomates",
                         "1 poivron",
                         "1 boîte de maïs",
-                        "Juice de citron",
+                        "Jus de citron",
                         "Huile d'olive",
                         "Herbes de Provence"
                     ],
@@ -1287,7 +1239,7 @@
                     source: "Journal des Femmes"
                 },
                 
-                // Recettes internationales - Maroc (4 recettes)
+                // Recettes internationales - Maroc (pork/wine recipes removed)
                 {
                     id: 17,
                     title: "Tajine de Poulet Citron Confit",
@@ -1358,40 +1310,6 @@
                     source: "Cuisine Marocaine"
                 },
                 {
-                    id: 19,
-                    title: "Pastilla au Poulet",
-                    image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Feuilleté sucré-salé marocain farci de poulet, amandes et épices, saupoudré de sucre glace et cannelle.",
-                    time: 90,
-                    servings: 6,
-                    rating: 4.8,
-                    category: "international",
-                    country: "maroc",
-                    ingredients: [
-                        "1 poulet",
-                        "200g d'amandes effilées",
-                        "10 feuilles de brick",
-                        "2 oignons",
-                        "4 œufs",
-                        "1 bouquet de persil",
-                        "Cannelle",
-                        "Sucre glace",
-                        "Beurre fondu",
-                        "Safran",
-                        "Gingembre"
-                    ],
-                    instructions: [
-                        "Faites cuire le poulet avec les oignons et les épices.",
-                        "Égrenez le poulet et réduisez le bouillon.",
-                        "Faites dorer les amandes avec un peu de beurre et de cannelle.",
-                        "Battez les œufs et faites-les cuire dans le bouillon pour obtenir une crème.",
-                        "Montez la pastilla en alternant couches de brick, poulet, crème aux œufs et amandes.",
-                        "Badigeonnez de beurre et enfournez à 180°C pendant 30 minutes.",
-                        "Saupoudrez de sucre glace et de cannelle avant de servir."
-                    ],
-                    source: "Cuisine Marocaine"
-                },
-                {
                     id: 20,
                     title: "Harira Marocaine",
                     image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -1408,7 +1326,7 @@
                         "1 bouquet de coriandre",
                         "1 bouquet de persil",
                         "2 oignons",
-                        "2 branches de céleri",
+                        "2 branches de célei",
                         "100g de vermicelles",
                         "1 cuillère à café de gingembre",
                         "1 cuillère à café de curcuma",
@@ -1426,7 +1344,7 @@
                     source: "Cuisine Marocaine"
                 },
                 
-                // Recettes internationales - Italie (4 recettes)
+                // Recettes internationales - Italie (pork/wine recipes removed)
                 {
                     id: 21,
                     title: "Pizza Margherita",
@@ -1486,36 +1404,6 @@
                     source: "Cuisine Italienne"
                 },
                 {
-                    id: 23,
-                    title: "Osso Buco",
-                    image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Plat milanais traditionnel à base de jarret de veau braisé avec légumes et vin blanc.",
-                    time: 150,
-                    servings: 4,
-                    rating: 4.8,
-                    category: "international",
-                    country: "italie",
-                    ingredients: [
-                        "4 tranches de jarret de veau",
-                        "1 oignon",
-                        "2 carottes",
-                        "2 branches de céleri",
-                        "400g de tomates pelées",
-                        "Vin blanc",
-                        "Bouillon de veau",
-                        "Farine"
-                    ],
-                    instructions: [
-                        "Faire revenir les tranches de veau farinées.",
-                        "Ajouter les légumes émincés et faire revenir.",
-                        "Mouiller avec le vin blanc et réduire.",
-                        "Ajouter les tomates et le bouillon.",
-                        "Couvrir et laisser mijoter 2 heures.",
-                        "Servir avec un risotto alla milanese."
-                    ],
-                    source: "Cuisine Italienne"
-                },
-                {
                     id: 24,
                     title: "Tiramisu",
                     image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -1545,7 +1433,7 @@
                     source: "Cuisine Italienne"
                 },
                 
-                // Recettes internationales - Thaïlande (4 recettes)
+                // Recettes internationales - Thaïlande
                 {
                     id: 25,
                     title: "Pad Thai",
@@ -1633,7 +1521,7 @@
                     ],
                     instructions: [
                         "Couper le poulet en cubes.",
-                        "Préparer la marinade avec lait de coco et épites.",
+                        "Préparer la marinade avec lait de coco et épices.",
                         "Faire mariner le poulet 2 heures.",
                         "Enfiler sur des brochettes et griller.",
                         "Préparer la sauce avec arachides, lait de coco, sauce soja et miel.",
@@ -1673,38 +1561,7 @@
                     source: "Cuisine Thaïlandaise"
                 },
                 
-                // Recettes internationales - Mexique (4 recettes)
-                {
-                    id: 29,
-                    title: "Tacos al Pastor",
-                    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Tacos mexicains garnis de porc mariné, ananas et oignon, inspirés des shawarmas libanais.",
-                    time: 60,
-                    servings: 4,
-                    rating: 4.8,
-                    category: "international",
-                    country: "mexique",
-                    ingredients: [
-                        "500g de porc",
-                        "Ananas",
-                        "1 oignon",
-                        "Coriandre",
-                        "Tortillas de maïs",
-                        "Piments guajillo",
-                        "Vinaigre",
-                        "Origan",
-                        "Achiote"
-                    ],
-                    instructions: [
-                        "Préparer la marinade avec piments, épices et vinaigre.",
-                        "Faire mariner le porc 4 heures.",
-                        "Cuire le porc à la verticale si possible.",
-                        "Faire revenir l'oignon et l'ananas.",
-                        "Chauffer les tortillas.",
-                        "Garnir les tortillas de porc, ananas, oignon et coriandre."
-                    ],
-                    source: "Cuisine Mexicaine"
-                },
+                // Recettes internationales - Mexique
                 {
                     id: 30,
                     title: "Guacamole",
@@ -1776,7 +1633,7 @@
                     country: "mexique",
                     ingredients: [
                         "250ml d'eau",
-                        "2 cuillères à soupe de subre",
+                        "2 cuillères à soupe de sucre",
                         "1 pincée de sel",
                         "125g de farine",
                         "1 œuf",
@@ -1798,39 +1655,7 @@
                     source: "Cuisine Mexicaine"
                 },
                 
-                // Recettes internationales - Japon (4 recettes)
-                {
-                    id: 33,
-                    title: "Ramen au Porc",
-                    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Soupe japonaise avec nouilles, bouillon riche, porc confit, œuf mollet et légumes.",
-                    time: 120,
-                    servings: 4,
-                    rating: 4.9,
-                    category: "international",
-                    country: "japon",
-                    ingredients: [
-                        "4 portions de nouilles ramen",
-                        "4 œufs",
-                        "600g de poitrine de porc",
-                        "1 morceau de gingembre",
-                        "4 gousses d'ail",
-                        "Sauce soja",
-                        "Mirin",
-                        "Bouillon de poulet",
-                        "Germes de soja",
-                        "Oignon vert"
-                    ],
-                    instructions: [
-                        "Faire confire le porc 2 heures dans la sauce soja, mirin et aromates.",
-                        "Préparer les œufs mollets marinés.",
-                        "Faire le bouillon avec le bouillon de poulet, sauce soja et aromates.",
-                        "Cuire les nouilles.",
-                        "Découper le porc et les œufs en deux.",
-                        "Dresser les bols avec nouilles, bouillon, porc, œuf et garnitures."
-                    ],
-                    source: "Cuisine Japonaise"
-                },
+                // Recettes internationales - Japon
                 {
                     id: 34,
                     title: "Sushi Assorti",
@@ -1924,37 +1749,7 @@
                     source: "Cuisine Japonaise"
                 },
                 
-                // Recettes internationales - France (4 recettes)
-                {
-                    id: 37,
-                    title: "Coq au Vin",
-                    image: "https://images.unsplash.com/photo-1591386766620-837745193736?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    description: "Plat traditionnel français au poulet mijoté dans du vin rouge avec champignons et lardons.",
-                    time: 120,
-                    servings: 4,
-                    rating: 4.8,
-                    category: "international",
-                    country: "france",
-                    ingredients: [
-                        "1 poulet coupé en morceaux",
-                        "75cl de vin rouge",
-                        "200g de champignons de Paris",
-                        "150g de lardons",
-                        "20 petits oignons",
-                        "2 gousses d'ail",
-                        "Bouquet garni",
-                        "Farine"
-                    ],
-                    instructions: [
-                        "Faire revenir les lardons et les oignons.",
-                        "Faire dorer les morceaux de poulet farinés.",
-                        "Déglacer au vin rouge.",
-                        "Ajouter l'ail et le bouquet garni.",
-                        "Couvrir et laisser mijoter 1h30.",
-                        "Ajouter les champignons en fin de cuisson."
-                    ],
-                    source: "Cuisine Française"
-                },
+                // Recettes internationales - France (pork/wine recipes removed)
                 {
                     id: 38,
                     title: "Quiche Lorraine",
@@ -2045,6 +1840,51 @@
                 }
             ];
 
+            // Initialize ad units
+            function initializeAdUnits() {
+                // Ad Unit 1 (300x250)
+                const adUnit1 = document.getElementById('ad-unit-1');
+                if (adUnit1) {
+                    adUnit1.innerHTML = `
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"><\/script>
+                    `;
+                }
+                
+                // Ad Unit 2 (160x300)
+                const adUnit2 = document.getElementById('ad-unit-2');
+                if (adUnit2) {
+                    adUnit2.innerHTML = `
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '6996ee07ad484df46c0d487ce2b4fb3c',
+                                'format' : 'iframe',
+                                'height' : 300,
+                                'width' : 160,
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/6996ee07ad484df46c0d487ce2b4fb3c/invoke.js"><\/script>
+                    `;
+                }
+                
+                // Ad Unit 3 (other format)
+                const adUnit3 = document.getElementById('ad-unit-3');
+                if (adUnit3) {
+                    adUnit3.innerHTML = `
+                        <script type='text/javascript' src='//pl27549972.revenuecpmgate.com/d8/78/a3/d878a3720d624566fa1f9d1870ad8111.js'><\/script>
+                    `;
+                }
+            }
+
             // Éléments DOM
             const pages = document.querySelectorAll('.page');
             const navLinks = document.querySelectorAll('nav a');
@@ -2086,9 +1926,6 @@
                 const targetPage = document.getElementById(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
-                    
-                    // Mettre à jour l'URL dans la barre d'adresse
-                    window.history.pushState({page: pageId, data: data}, '', `#${pageId}`);
                     
                     // Scroll vers le haut
                     window.scrollTo(0, 0);
@@ -2134,18 +1971,27 @@
                         adContainer.className = 'ad-container horizontal';
                         adContainer.innerHTML = `
                             <div class="ad-label">Publicité</div>
-                            <script type="text/javascript">
-                                atOptions = {
-                                    'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
-                                    'format' : 'iframe',
-                                    'height' : 250,
-                                    'width' : 300,
-                                    'params' : {}
-                                };
-                            <\/script>
-                            <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"><\/script>
+                            <div id="ad-unit-1"></div>
                         `;
                         recipesContainer.appendChild(adContainer);
+                        // Reinitialize the ad unit
+                        setTimeout(() => {
+                            const newAdUnit = adContainer.querySelector('#ad-unit-1');
+                            if (newAdUnit) {
+                                newAdUnit.innerHTML = `
+                                    <script type="text/javascript">
+                                        atOptions = {
+                                            'key' : '4cb5cc1a07d6e010f0093e9acd083cb5',
+                                            'format' : 'iframe',
+                                            'height' : 250,
+                                            'width' : 300,
+                                            'params' : {}
+                                        };
+                                    <\/script>
+                                    <script type="text/javascript" src="//www.highperformanceformat.com/4cb5cc1a07d6e010f0093e9acd083cb5/invoke.js"><\/script>
+                                `;
+                            }
+                        }, 100);
                     }
                     
                     const recipeCard = document.createElement('div');
@@ -2278,40 +2124,6 @@
                 });
             });
             
-            // Gestion du bouton retour du navigateur
-            window.addEventListener('popstate', function(e) {
-                if (e.state && e.state.page) {
-                    const targetPage = e.state.page;
-                    const targetData = e.state.data;
-                    
-                    if (targetPage === 'recipe-detail' && targetData) {
-                        navigateTo(targetPage, targetData);
-                    } else {
-                        navigateTo(targetPage);
-                    }
-                } else {
-                    navigateTo('home');
-                }
-            });
-            
-            // Gestion de l'ancrage dans l'URL au chargement
-            window.addEventListener('load', function() {
-                if (window.location.hash) {
-                    const pageId = window.location.hash.substring(1);
-                    if (pageId === 'recipes') {
-                        navigateTo('recipes');
-                    }
-                }
-                
-                // Positionner la pub latérale si on est sur une page de détail
-                if (currentPage === 'recipe-detail') {
-                    setTimeout(positionSidebarAd, 500);
-                }
-            });
-            
-            // Initialiser l'état de navigation
-            window.history.replaceState({page: 'home'}, '', '#home');
-            
             // Header au défilement
             const header = document.querySelector('header');
             window.addEventListener('scroll', function() {
@@ -2329,8 +2141,20 @@
                 }
             });
             
+            // Initialize ad units
+            initializeAdUnits();
+            
             // Charger les recettes au démarrage
             loadRecipes();
+            
+            // Setup navigation event listeners
+            document.querySelectorAll('[data-page]').forEach(element => {
+                element.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    navigateTo(pageId);
+                });
+            });
         });
     </script>
 </body>
